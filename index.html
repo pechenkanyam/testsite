@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="icon" href="icon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SquareFox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    /* ─── PIXEL FONT (Unifont subset, embedded) ─── */
+    @font-face {
+      font-family: 'PixelMC';
+      src: url('data:font/otf;base64,T1RUTwALAIAAAwAwQ0ZGIM03xn8AAADEAAAPHkdQT1MAGQAMAAAWMAAAABBHU1VCpfXA+wAAFkAAAAAqT1MvMl/Py3EAABFIAAAAZGNtYXANZwJtAAAVrAAAAGRoZWFkV2F49QAAD+QAAAA2aGhlYQA6ADoAABEkAAAAJGhtdHgAIAAAAAAQHAAAAQhtYXhwAINQAAAAALwAAAAGbmFtZV3genUAABGsAAAEAHBvc3QAAwACAAAWEAAAACAAAFAAAIMAAAEABAIAAQEBCFVuaWZvbnQAAQEBHPgb+ByLDB4dAADfAAwi2A/xDCUcDvwMJPcCEQADAQEGDhVBZG9iZUlkZW50aXR5VW5pZm9udAAAAQAhAAAvAAAxCQBCGQBiGQQCAAQRPwRSAAMAAQAAAACDAIMCAAEAAwAFAA4AQwBYAHsAnAC7ANQA8QEEASUBQgFfAXgBkQGqAbsBygHpAfoCCwIgAk0CWAJxAo4CowK2AtcC9gMbAygDOQNaA3MDnAO9A94D/wQcBDUEUgRtBIIEqwTABNYE9AUdBSwFQwVYBW0FigWnBbwF4QX2BgsGJAY9BmYGgwakBsIG3wb0Bw0HGAc3B0gHeQecB7kH5QgOCCMIPAhNCGIIbwiCCJsIqAjPCPAJGQkqCT8JUAlkCXkJkgmlCcoJ5woGCicKSAphCmwKhwqiCtMK9gsPCzcLYAt1C44Lnwu0C8EL3gv3DAQMJQxGDG8MgAyVDKYMugzPDOgM+w0gDT0NXA2Eiw6LDouXkxWDk5MHDouXsxWHh4eHc4+Hj4eTj4OPh4+Pj4+Ph4eHm4+Pk4ePh4eHh4ePj497h4ePj4+jh4+HjwcOi5uzFYeHh4eHj4+Pb4OHn4+DrwcOi5OzFYeHg4+Tm3+Dh4eHh4eHf6OPd5OPj4+Pk4+Pl4ePBw6Lk7MVh4eDj5Obf3+Hl3t7k4eDj4ebj4+bh4+Pl4ePBw6Ln7MVh4eHj3t/k4+Pj4+Hh4eHh3+bf4+Xj4+HowcOi4+zFXefe3uPh4ePh5uPj5uHj3uXn48HDouXsxWHh4eHb4+Hm4+Pm4d7e5ubj3uTj4+XjwcOi4+zFYefg4d/h3uPm4+Xj5cHDouTsxWHh3+Ph4d7j4ebj3ubm3uPm4ePe5ebf4+Xh48HDouTsxWHh3+Pl5t/e4ebf4eHf4eXj4+Pj6eHjwcOi5ezFYeTg4+De5OPk4eDh2+Pm5t7j6eHk4ePBw6Lj7MVY5+Pj5uHe3ubm4+Pl4d/e5ebjwcOi5OzFYeHa4+Hm4+Pk4eDe6ubg4+Th48HDouPsxVjm4+Pj4+jh3OHh3+rl4ePj4ePBw6Lj7MVY6OPd5ubj3uXn48HDouPsxVjj5+bj3uXn48HDouTsxWHh2uPh5ePj4ePn3+Hk4OHh3+rm4OPk4ePBw6Lj7MVY4+fm3ePs4d7e5sHDouTsxWHk2uDh5+Pg6uTjwcOi5ezFYeTa3+Th4OPh5ePj6uTjwcOi4+zFWOPm4+Hj4ePh4+Hj4+Hj4ePh4+Hk4+Pj4+Pj4+Ph4eHh4eHh4eHmwcOi4+zFWOjj3evBw6Lj7MVY4+jj4OTk49zj7OHg4eDg5OHkwcOi4+zFWOPp4+Dj4OPg4+Hj7OHb4eTh5OHk4ePBw6Lk7MVh4drj4ebj3urm2uPq4ePBw6Lj7MVY4+fm4+Pl4d/e5ebjwcOi5OzFYebb4eHg4+Tj4OHh6eHa4+Hm4eTj4OPj6uHjwcOi4+zFWOPn5OHj4OPg4+Th5OHj4+Pj5eHf3uXm48HDouTsxWHh3+Ph5OHk397k4eDj4ebj4+Xh4+Dj4OXm4OPk4ePBw6Lj7MVh5dnj6+XjwcOi4+zFWePh5uPj6+HZ3uvBw6Lj7MVf49/j4OPg4+Tj5OPl4+Xh3+Hf4eDh5OHl4eXBw6Lj7MVY4+Tj5OTg4+Dj7OHc4eTg4OHowcOi4+zFYOPg4+Dh4OHg4+Tj5OTg4+Dj5OHk4eTj5OPk4eDh4ODk4eTBw6Lj7MVg4+Dj4ePd4+fj4+Pk4+Th4OHg4eHh4+Hk4eTBw6Lj7MVh5+Dh4eHh4eHh4eHf6OPd5OPj4+Pj4+Pj4+XBw6Lk6sVh4eHj4+bg3uHh3+Ph5ePf5ebg4eHj4ePp4ePBw6Lj7cVX4+Pj4eXj4+jh3N/j4ebj4+Xj3+Hh5sHDouTqxWHh3OPh5uPj4+Hh3ujm4ePj4ePBw6Lo7cVe4ePf4eHc4+jl4ePe4eHf4eXj4+Hj7cHDouTqxWHm4N7k4dzj4ebj4+Ph4d7l5+Xh48HDoubtxWHh3+Dh5Nzj6OTj4OXk48HDoujrxWDh49/h4d/j5eXf39/h4OPh5uPe5Obg4+Th49/j5OPj5ePkwcOi4+3FV+Po4+Pl2+Pp4ePf4eHmwcOi5u3FYOPkweDfxWHj3ODh5+Pg6cHDouftxWDj5MHg38Vh49vh4eDj4eHj4eTj4+Pj6sHDouPtxVfj5uPh4+Hj4ePh4+Ph4+Hj4ePh4+Pj4+Pj4+Hh4eHh4eHowcOi5e3FYePZ4OHn4+DswcOi4+rFWuPp5Nvj6eTb4+nh4+Dh4ePBw6Lj6sVa4+jj4+Xb4+nh49/h4ePBw6Lk6sVh4dzj4ebj3ujm3OPo4ePBw6Lj6sVY4+Xj4eXj4+jh3N/j4ebj4+Xj3+Hh48HDouTqxWHh3OPh5ePf6OXh497h4ePf4+zh4eHjwcOi4+rFWuPo4+Pl4OPk4ePf4eHjwcOi5OrFYeHg4+Hk4eTg3uPh4ePh5uPj5OHj4OPg5Obh4+Ph48HDouXsxV/g4eTd4+Hk4+Dn5OPg5cHDouPqxVvj4eXj4+Hj6uHc4eHf6cHDouPqxV/j3+Pg5OTj5ePl4d/h3+Dl4eXBw6Lj6sVb4+Hk4+Ph5OPj6eHb4Ojh3ODpwcOi4+rFYOPh4+Dh4eHg4+Tj4+Th4+Dj5OHj4eTj4+Pk4eDh4eDj4eTBw6Lj6sVd4+Hj4eTj49/e4ebj4+vh3eHh4OPh58HDouPqxWHn4eHh4eHh4eHh4eDo493j4+Pj4+Pj4+Pj5MHDouTwxWDj5MHkxaDj5MHd3sVY6OPd5ubj3uXn48HDouXsxWHk4OPg3uTj5OHg4dvj5ube4+nh5OHjwcOi4+zFWOfj4+bh3t7m5uPe5ebjwcOi4+zFWOfj4+bh3t7m5uPj5eHf3uXm48HDouPsxVjj6+fjwcOi5uzFYeTa3uTj5ePl4d/h3+Hg4d/j5Ojg4+Xh68HDouPsxVjo493m5uPe5efjwcOi4+zFYOPg4+Dh4OHg4+Tj5OPe4+bj4OPg4+Th5OHk4+Tj5OHg4eDh5uHe4eTh5MHDouTsxWHh4ePj5t/e4eXh49/e4+Hh4+Hm4+Pl4eTj5eHjwcOi4+zFWOPj4+Tj5OPk49vj7OHh4eDh4OHg4enBw6Lk78Vh4+Hk4+Pj4eHg48Hg38VY4+Pj5OPk4+Tj2+Ps4eHh4OHg4eDh6cHDouPsxVjj5uPh4+Hj4ePh4+Ph4+Hj4ePh4+Pk4+Tk4+Dh4eDh4OHnwcOi5ezFW+Hg4eHj4+Pk4+jk2ePswcOi4+zFWOPo4+Dk5OPc4+zh4OHg4OTh5MHDouPsxVjj5+bd4+zh3t7mwcOi5OzFYeHa4+Hm497q5trj6uHjwcOi4+zFWOPr5tnj7MHDouPsxVjj5+bj4+Xh397l5uPBw6Lk7MVh4drj4ebj4+Th4N7q5uDj5OHjwcOi4+zFYeXZ4+vl48HDouPsxWDj4OPg4+Dh4eHh5OTj5OPk4+Tj5OHg4eDh4OHk4eTh5MHDoubtxWHg4eHd4+fk3eDh5N/j5eTj4+fh3eDn5OPg48HDouPsxWDj4OPg4eDh4OPk4+Tk4OPg4+Th5OHk4+Tj5OHg4eDg5OHkwcOi4+zFWOjg4+Xh6+HZ3uvBw6Lj7MVc4+Hl4+Pe4+zh3eHh3+jBw6Lj7MVY6ezh2eDr4dng68HDouzBGOng4+Xh6+HZ4Ovh2eDrwcOi4+zFYeTZ5uPj5uHe3+bl49/mwcOi4+zFWOXj4+bh3uDm5OPg5sHmxZjj7MHDouPsxVjn4+Pm4d7e5ubj3ubBw6Lk7MVh4eHj4+Xh4+De4ebf4eHf4+Hh4+Hl4+Pj4+jh4+HjwcOi4+zFWOPn497j4eTj4+rh2uDq5OPg4eHf4ebBw6Lk7MVh4d/j5ebf3uHj4eHg4eDj5OPk4+Pk3ePswcOi5OrFYeHh4+Pm4N7h4d/j4eXj3+Xm4OHh4+Hj6eHjwcOi6O7FYd/h4eHh2uPh5uPj6OHc3ujm497j4+Pl4+PjwcOi4+rFWufj4+Xh397l5uPj5OHg3uTm48HDouPqxVrj6efjwcOi5erFYOPj5Nze5ePk4eDh3ePj5+Hj5OHpwcOi5OrFYebg3uTh3OPh5uPj4+Hh3uXn5eHjwcOi4+rFYOPh4+Dh4eHg4+Tj4+Pf4+Xj4ePg4+Th4+Hk4+Pj5OHg4eHh5eHf4ePh5MHDouTqxWHh4ePj5uDe4eXh4+De4+Hh4+Hm4+Pk4eTj5OHjwcOi4+rFWuTk4+Tj5OPc4+rg4OHg4eDh6MHDouTuxWHj4eTj4+Ph4eDjweDexVrk5OPk4+Tj3OPq4ODh4OHg4ejBw6Lj6sVa4+bj4ePh4+Hj4ePj4ePh4+Hj4ePj4+Pj5OPg4eHh4eHh5cHDouXqxV3h4OHh4+Pj5OPm5Nvj6sHDouPqxVrj5+Pg5OTj3ePq4eHh4ODk4ePBw6Lj6sVa4+bm3uPq4d/e5cHDouTqxWHh3OPh5uPe6Obc4+jh48HDouPqxVrj6ebb4+rBw6Lj6sVY4+Xj4eXj4+jh3N/j4ebj4+Xj3+Hh48HDouTqxWHh3OPh5uPj4+Hh3ujm4ePj4ePBw6Lj6sVh5dvj6eXjwcOi4+rFYOPg497h4eHh5OTj5OPk4+Tj5OHg4eDg5OHkwcOi5u3FX+Dh4dzj6OTc4OHk4OPk5OPj6OHc4Ojk4+DlwcOi4+rFYOPh4+Dh4eHg4+Tj4+Th4+Dj5OHj4eTj4+Pk4eDh4eDj4eTBw6Lj6sVa6ODj5eHp4dve6cHDouPqxV3j4eXj49/j6uHe4eHf58HDouPqxVrp6uHb4Onh2+DpwcOi6sEa6eDj5eHp4dvg6eHb4OnBw6Lj6sVh5Nvm4+Pl4d/f5eXj3+XBw6Lj6sVa5ePj5eHf4OXk4+DlwebFmuPqwcOi4+rFWufj4+Xh397l5uPe5cHDouTqxWHh4ePj5eHj4d7h5uDh4d/j4eHj4eXj4+Pj5uHj4ePBw6Lj6sVa4+bj3+Ph5OPj6OHc4Ojk4+Dh4eDh5cHDouTqxWHh3+Pl5t/e4ePh4eHh4ePj4+Pj4+Tf4+rBw6Lk7sVg4+TB5MWg4+TB3t7FYebg3uTh3OPh5uPj4+Hh3uXn5eHjwcOAAEBARr4HQwmHhViXG+Lix4VYlxvi4sMB48cDxoSyxSrFQAAAAEAAAAAAAAq9lVeXw889QADAEAAAAAAfCWdwAAAAAB8JZ3A/8D/+ABAADgAAAAQAAIAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAADj/+AAAAED/wAAAAEAAAQAAAAAAAAAAAAAAAAAAAAEABQBAAZAABQAAABQAHAAAAAQAFAAcAAAAEAAEABQICgILBAYCAgIIAgT///////////////8O////R05VIAHAACAEUQA4//gAAAA4AAhgPwH///8AAAAgACgAAAAgAAAAAP//AAAACgB+AAMAAQQJAAABYAAAAAMAAQQJAAEADgFgAAMAAQQJAAIADgFuAAMAAQQJAAMAJgF8AAMAAQQJAAQADgGiAAMAAQQJAAUAHgGwAAMAAQQJAAYADgHOAAMAAQQJAAsAPgHcAAMAAQQJAA0A7AIaAAMAAQQJAA4AfAMGAEMAbwBwAHkAcgBpAGcAaAB0ACAAqQAgADEAOQA5ADgALQAyADAAMgAzACAAUgBvAG0AYQBuACAAQwB6AHkAYgBvAHIAcgBhACwAIABQAGEAdQBsACAASABhAHIAZAB5ACwAIABRAGkAYQBuAHEAaQBhAG4AIABGAGEAbgBnACwAIABBAG4AZAByAGUAdwAgAE0AaQBsAGwAZQByACwAIABKAG8AaABuAG4AaQBlACAAVwBlAGEAdgBlAHIALAAgAEQAYQB2AGkAZAAgAEMAbwByAGIAZQB0AHQALAAgAE4AaQBsAHMAIABNAG8AcwBrAG8AcABwACwAIABSAGUAYgBlAGMAYwBhACAAQgBlAHQAdABlAG4AYwBvAHUAcgB0ACwAIABNAGkAbgBzAGUAbwAgAEwAZQBlACwAIABIAG8ALQBTAGUAbwBrACAARQBlACwAIABlAHQAIABhAGwALgBVAG4AaQBmAG8AbgB0AFIAZQBnAHUAbABhAHIAVQBuAGkAZgBvAG4AdAAtADEANQAuADEALgAwADEALgBvAHQAZgBVAG4AaQBmAG8AbgB0AFYAZQByAHMAaQBvAG4AIAAxADUALgAxAC4AMAAxAFUAbgBpAGYAbwBuAHQAaAB0AHQAcABzADoALwAvAHUAbgBpAGYAbwB1AG4AZAByAHkALgBjAG8AbQAvAHUAbgBpAGYAbwBuAHQALwBEAHUAYQBsACAAbABpAGMAZQBuAHMAZQA6ACAAUwBJAEwAIABPAHAAZQBuACAARgBvAG4AdAAgAEwAaQBjAGUAbgBzAGUAIAB2AGUAcgBzAGkAbwBuACAAMQAuADEALAAgAGEAbgBkACAARwBOAFUAIABHAFAATAAgAHYAZQByAHMAaQBvAG4AIAAyACAAbwByACAAbABhAHQAZQByACAAdwBpAHQAaAAgAHQAaABlACAARwBOAFUAIABGAG8AbgB0ACAARQBtAGIAZQBkAGQAaQBuAGcAIABFAHgAYwBlAHAAdABpAG8AbgAuAGgAdAB0AHAAcwA6AC8ALwBnAG4AdQAuAG8AcgBnAC8AbABpAGMAZQBuAHMAZQBzAC8AZwBwAGwALgBoAHQAbQBsACwAIABoAHQAdABwAHMAOgAvAC8AcwBjAHIAaQBwAHQAcwAuAHMAaQBsAC4AbwByAGcALwBPAEYATAAAAAEAAwABAAAADAAEAFgAAAASABAAAwACACAALgA5AFoAegQBBE8EUf//AAAAIAAuADAAQQBhBAEEEARR////4f/U/9P/zP/G/ED8MvwxAAEAAAAAAAAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAABAAAACgAMAA4AAAAAAAAAAQAAAAoAJgAoAAJERkxUAA50aGFpABgABAAAAAD//wAAAAAAAAAAAAAAAA==') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #07000f;
+      --bg2: #0f0020;
+      --accent: #b04dff;
+      --accent2: #7a1fff;
+      --accent3: #d480ff;
+      --glow: rgba(160, 60, 255, 0.38);
+      --text: #e8d5ff;
+      --muted: #9370bb;
+      --card-w: 300px;
+      --card-h: 500px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      font-family: 'Raleway', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── STARFIELD ─── */
+    #starfield { position: fixed; inset: 0; z-index: -1; }
+
+    /* ─── HEADER ─── */
+    header {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      background: rgba(7, 0, 16, 0.92);
+      border-bottom: 1px solid rgba(176, 77, 255, 0.15);
+      backdrop-filter: blur(16px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      padding: 13px 16px;
+      z-index: 1000;
+      flex-wrap: wrap;
+    }
+
+    .logo-text {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: 1.15em;
+      color: var(--accent);
+      letter-spacing: 3px;
+      margin-right: 18px;
+      text-shadow: 0 0 18px var(--glow), 0 2px 0 #3a0070;
+    }
+
+    header a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.78em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    header a:hover, header a.active {
+      color: #fff;
+      border-color: rgba(176, 77, 255, 0.4);
+      background: rgba(176, 77, 255, 0.12);
+    }
+
+    header a.wiki-link {
+      background: rgba(176, 77, 255, 0.12);
+      border-color: rgba(176, 77, 255, 0.3);
+      color: var(--accent);
+    }
+    header a.wiki-link:hover { background: rgba(176, 77, 255, 0.26); color: #fff; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(176, 77, 255, 0.1);
+      border: 1px solid rgba(176, 77, 255, 0.3);
+      border-radius: 30px;
+      padding: 6px 18px;
+      font-size: 0.75em;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--accent3);
+      margin-bottom: 22px;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .badge-dot {
+      width: 7px; height: 7px;
+      background: #ff4444;
+      border-radius: 50%;
+      animation: blink 1.8s ease infinite;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+
+    .hero-title {
+      font-family: 'Press Start 2P', 'PixelMC', monospace;
+      font-size: clamp(2.8em, 9vw, 7em);
+      color: #fff;
+      text-shadow:
+        0 0 30px var(--accent),
+        0 0 80px rgba(176, 77, 255, 0.35),
+        0 4px 0 #2a0060;
+      line-height: 1.05;
+      letter-spacing: 4px;
+      animation: fadeDown 0.9s 0.1s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .hero-sub {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: clamp(0.82em, 2vw, 1em);
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 300;
+      animation: fadeDown 0.9s 0.25s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .hero-divider {
+      width: 130px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 26px auto;
+      animation: fadeDown 0.9s 0.38s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown 0.9s 0.5s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .hero-season {
+      margin-top: 30px;
+      font-size: 0.78em;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: fadeDown 0.9s 0.65s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .hero-season span {
+      color: #ff6666;
+      font-weight: 700;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.66em;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      animation: fadeDown 0.9s 1.2s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .scroll-arrow {
+      width: 1px; height: 38px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    @keyframes scrollPulse { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+    .scroll-mouse {
+      width: 24px;
+      height: 38px;
+      border: 2px solid rgba(176, 77, 255, 0.5);
+      border-radius: 12px;
+      position: relative;
+      animation: fadeDown 0.9s 1.2s ease both;
+      opacity: 0; animation-fill-mode: forwards;
+    }
+
+    .scroll-mouse::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 7px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: scrollWheel 1.8s ease infinite;
+      box-shadow: 0 0 6px var(--accent);
+    }
+
+    @keyframes scrollWheel {
+      0%   { top: 5px; opacity: 1; }
+      80%  { top: 18px; opacity: 0; }
+      100% { top: 5px; opacity: 0; }
+    }
+
+    /* ─── BUTTONS ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 26px;
+      border-radius: 50px;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.82em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff;
+      box-shadow: 0 4px 22px rgba(160, 60, 255, 0.45);
+    }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(160, 60, 255, 0.65); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid rgba(176, 77, 255, 0.5);
+    }
+    .btn-outline:hover { background: rgba(176, 77, 255, 0.1); transform: translateY(-3px); border-color: var(--accent); }
+
+    .btn-green {
+      background: linear-gradient(135deg, #1a6b2e, #27ae60);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(39, 174, 96, 0.35);
+    }
+    .btn-green:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(39, 174, 96, 0.55); }
+
+    /* ─── SECTION GENERIC ─── */
+    .section-title {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: clamp(1.2em, 4vw, 1.9em);
+      color: #fff;
+      text-align: center;
+      margin-bottom: 10px;
+      text-shadow: 0 0 22px var(--glow), 0 2px 0 #2a0060;
+      letter-spacing: 3px;
+    }
+
+    .section-rule {
+      width: 80px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 0 auto 50px;
+    }
+
+    /* ─── CARDS ─── */
+    #cards {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cards-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 34px;
+      max-width: 1200px;
+    }
+
+    .card {
+      width: var(--card-w);
+      height: var(--card-h);
+      perspective: 1200px;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.7s ease, transform 0.7s ease, filter 0.3s ease;
+    }
+
+    .card.visible { opacity: 1; transform: translateY(0); }
+    .card:hover { filter: drop-shadow(0 0 20px rgba(176, 77, 255, 0.55)); }
+
+    .card-inner {
+      position: relative;
+      width: 100%; height: 100%;
+      text-align: center;
+      transition: transform 0.85s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+      cursor: pointer;
+      border-radius: 18px;
+    }
+
+    .card:hover .card-inner { transform: rotateY(180deg); }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%; height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 18px;
+      overflow: hidden;
+    }
+
+    .card-front {
+      background: var(--bg2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(176, 77, 255, 0.13);
+    }
+
+    .card-front img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.85s ease;
+    }
+
+    .card:hover .card-front img { transform: scale(1.05); }
+
+    .card-back {
+      background: linear-gradient(148deg, #1a003a 0%, #2c0060 55%, #0d001e 100%);
+      color: white;
+      transform: rotateY(180deg);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow-y: auto;
+      border: 1px solid rgba(176, 77, 255, 0.22);
+    }
+
+    .card-back h2 {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: 1.15em;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 12px var(--glow);
+    }
+
+    .card-back h2::after {
+      content: '';
+      display: block;
+      width: 40px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      margin: 10px auto 0;
+    }
+
+    .card-back p { line-height: 1.75; font-size: 0.86em; color: #d0b0ee; font-weight: 300; }
+
+    /* ─── ABOUT ─── */
+    #about {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .about-inner { max-width: 760px; width: 100%; }
+
+    .about-desc {
+      text-align: center;
+      font-size: 1.05em;
+      line-height: 1.9;
+      color: #c0a0e0;
+      font-weight: 300;
+      margin-bottom: 50px;
+    }
+
+    /* ─── INFO CARDS GRID ─── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+
+    .info-card {
+      background: rgba(176, 77, 255, 0.055);
+      border: 1px solid rgba(176, 77, 255, 0.18);
+      border-radius: 16px;
+      padding: 24px 20px;
+      transition: all 0.3s ease;
+    }
+
+    .info-card:hover {
+      background: rgba(176, 77, 255, 0.12);
+      border-color: rgba(176, 77, 255, 0.38);
+      transform: translateY(-3px);
+    }
+
+    .info-card .ic-icon { font-size: 1.8em; margin-bottom: 12px; }
+
+    .info-card h3 {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: 0.82em;
+      color: var(--accent3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .info-card p, .info-card ul {
+      font-size: 0.86em;
+      color: #c4a4e4;
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .info-card ul { list-style: none; padding: 0; }
+    .info-card ul li::before { content: '▸ '; color: var(--accent); }
+
+    .info-card .mc-version {
+      display: inline-block;
+      background: rgba(39, 174, 96, 0.15);
+      border: 1px solid rgba(39, 174, 96, 0.35);
+      border-radius: 8px;
+      padding: 4px 12px;
+      font-size: 0.9em;
+      color: #5dde8c;
+      margin-top: 6px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* ─── FAQ ─── */
+    #faq {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .faq-list {
+      max-width: 740px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: rgba(176, 77, 255, 0.05);
+      border: 1px solid rgba(176, 77, 255, 0.16);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .faq-item.open { border-color: rgba(176, 77, 255, 0.4); }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      font-weight: 700;
+      font-size: 0.92em;
+      letter-spacing: 0.5px;
+      padding: 18px 20px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: color 0.3s;
+    }
+
+    .faq-item.open .faq-q { color: var(--accent3); }
+
+    .faq-arrow {
+      width: 18px; height: 18px;
+      border-right: 2px solid var(--accent);
+      border-bottom: 2px solid var(--accent);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+      transition: transform 0.35s ease;
+      margin-top: -4px;
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(-135deg); margin-top: 4px; }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+      padding: 0 20px;
+    }
+
+    .faq-item.open .faq-a { max-height: 400px; padding: 0 20px 18px; }
+
+    .faq-a p {
+      font-size: 0.88em;
+      color: #c0a0e0;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .faq-a a {
+      color: var(--accent3);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(212, 128, 255, 0.35);
+      transition: color 0.2s;
+    }
+    .faq-a a:hover { color: #fff; }
+
+    /* ─── JOIN CTA ─── */
+    .join-block {
+      max-width: 740px;
+      width: 100%;
+      margin: 0 auto;
+      background: linear-gradient(135deg, rgba(176,77,255,0.08), rgba(122,31,255,0.12));
+      border: 1px solid rgba(176, 77, 255, 0.28);
+      border-radius: 20px;
+      padding: 40px 36px;
+      text-align: center;
+    }
+
+    .join-block h3 {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: clamp(1em, 3vw, 1.4em);
+      color: #fff;
+      margin-bottom: 12px;
+      text-shadow: 0 0 16px var(--glow);
+      letter-spacing: 2px;
+    }
+
+    .join-block p {
+      font-size: 0.9em;
+      color: var(--muted);
+      margin-bottom: 22px;
+      line-height: 1.7;
+    }
+
+    .join-buttons { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    /* ─── WIKI BLOCK ─── */
+    .wiki-block {
+      max-width: 740px;
+      width: 100%;
+      margin: 50px auto 0;
+      padding: 32px 36px;
+      background: rgba(176,77,255,0.06);
+      border: 1px solid rgba(176, 77, 255, 0.22);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .wiki-block .wiki-icon { font-size: 2.2em; }
+
+    .wiki-block h3 {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: 0.95em;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .wiki-block > p { font-size: 0.88em; color: var(--muted); max-width: 400px; text-align: center; line-height: 1.7; }
+
+    .wiki-versions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .wiki-tag {
+      padding: 5px 14px;
+      border-radius: 20px;
+      background: rgba(176, 77, 255, 0.1);
+      border: 1px solid rgba(176, 77, 255, 0.26);
+      font-size: 0.76em;
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .wiki-tag:hover { background: rgba(176, 77, 255, 0.26); color: #fff; transform: translateY(-2px); }
+
+    /* ─── SOCIALS PAGE ─── */
+    #socials {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .socials-desc {
+      text-align: center;
+      font-size: 0.92em;
+      color: var(--muted);
+      margin-bottom: 46px;
+      letter-spacing: 1px;
+    }
+
+    .socials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    .social-card {
+      background: rgba(176, 77, 255, 0.06);
+      border: 1px solid rgba(176, 77, 255, 0.18);
+      border-radius: 16px;
+      padding: 26px 22px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .social-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--sc-color, rgba(176, 77, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .social-card:hover::before { opacity: 1; }
+    .social-card:hover { border-color: rgba(176, 77, 255, 0.5); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+
+    .sc-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sc-icon svg { width: 28px; height: 28px; fill: #fff; }
+    .sc-icon img { width: 28px; height: 28px; object-fit: contain; }
+
+    .sc-info { position: relative; z-index: 1; }
+
+    .sc-info strong {
+      display: block;
+      font-size: 1em;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .sc-info span { font-size: 0.8em; color: var(--muted); }
+
+    .sc-arrow {
+      margin-left: auto;
+      color: var(--muted);
+      font-size: 1.2em;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .social-card:hover .sc-arrow { transform: translateX(4px); color: #fff; }
+
+    /* Colors */
+    .sc-yt  .sc-icon { background: #ff0000; }
+    .sc-tg  .sc-icon { background: #2AABEE; }
+    .sc-vk  .sc-icon { background: #0077ff; }
+    .sc-dc  .sc-icon { background: #5865F2; }
+    .sc-tt  .sc-icon { background: #010101; border: 1px solid #333; }
+
+    /* Admins sub */
+    .admin-block {
+      max-width: 900px;
+      width: 100%;
+      margin-top: 50px;
+      background: rgba(176,77,255,0.055);
+      border: 1px solid rgba(176,77,255,0.18);
+      border-radius: 16px;
+      padding: 28px 28px;
+    }
+
+    .admin-block h3 {
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: 0.85em;
+      color: var(--accent3);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      text-align: center;
+    }
+
+    .admin-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .admin-card {
+      background: rgba(0,0,0,0.25);
+      border: 1px solid rgba(176,77,255,0.2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 160px;
+    }
+
+    .admin-card .role {
+      font-size: 0.7em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .admin-card .name { font-weight: 700; color: #fff; font-size: 0.92em; }
+
+    .admin-card .handles { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+
+    .admin-card .handles span {
+      font-size: 0.75em;
+      color: var(--muted);
+    }
+
+    /* ─── CONTACTS ─── */
+    #contacts {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .contacts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      max-width: 640px;
+    }
+
+    .contact-card {
+      background: rgba(176, 77, 255, 0.06);
+      border: 1px solid rgba(176, 77, 255, 0.17);
+      border-radius: 14px;
+      padding: 17px 22px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 190px;
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.3s ease;
+    }
+
+    .contact-card:hover {
+      background: rgba(176, 77, 255, 0.16);
+      border-color: rgba(176, 77, 255, 0.45);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(176, 77, 255, 0.18);
+    }
+
+    .contact-card svg { width: 22px; height: 22px; fill: var(--accent); flex-shrink: 0; }
+
+    .contact-info strong {
+      display: block;
+      font-size: 0.73em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .contact-info span { font-size: 0.82em; color: var(--muted); }
+
+    /* ─── SOCIAL SIDEBAR ─── */
+    .top-buttons {
+      position: fixed;
+      top: 80px; right: 13px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .top-button {
+      background: rgba(10, 0, 20, 0.84);
+      border: 1px solid rgba(176, 77, 255, 0.2);
+      border-radius: 50%;
+      width: 42px; height: 42px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .top-button:hover {
+      background: rgba(176, 77, 255, 0.28);
+      border-color: var(--accent);
+      transform: scale(1.12) translateX(-3px);
+      box-shadow: 0 0 12px var(--glow);
+    }
+
+    .top-button svg { width: 19px; height: 19px; fill: #d0b0ee; }
+
+
+    /* ─── VOLUME SLIDER ─── */
+    .volume-panel {
+      position: fixed;
+      top: 80px;
+      right: 62px;
+      z-index: 998;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateX(10px);
+    }
+
+    .volume-panel.visible {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(0);
+    }
+
+    .volume-panel-inner {
+      background: rgba(10, 0, 22, 0.92);
+      border: 1px solid rgba(176, 77, 255, 0.28);
+      border-radius: 14px;
+      padding: 14px 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .volume-label {
+      font-size: 0.6em;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .volume-value {
+      font-size: 0.72em;
+      font-weight: 700;
+      color: var(--accent3);
+      letter-spacing: 1px;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Vertical range slider */
+    input[type="range"].vol-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      writing-mode: vertical-lr;
+      direction: rtl;
+      width: 6px;
+      height: 90px;
+      background: transparent;
+      cursor: pointer;
+      outline: none;
+    }
+
+    input[type="range"].vol-slider::-webkit-slider-runnable-track {
+      background: rgba(176, 77, 255, 0.2);
+      border-radius: 10px;
+      width: 6px;
+    }
+
+    input[type="range"].vol-slider::-moz-range-track {
+      background: rgba(176, 77, 255, 0.2);
+      border-radius: 10px;
+      width: 6px;
+    }
+
+    input[type="range"].vol-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      margin-left: -5px;
+      box-shadow: 0 0 8px rgba(176, 77, 255, 0.6);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    input[type="range"].vol-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+      box-shadow: 0 0 14px rgba(176, 77, 255, 0.9);
+    }
+
+    input[type="range"].vol-slider::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border: none;
+      box-shadow: 0 0 8px rgba(176, 77, 255, 0.6);
+    }
+
+    .vol-icon {
+      font-size: 0.9em;
+      opacity: 0.7;
+    }
+
+    @keyframes musicPulse { 0%,100%{box-shadow:0 0 6px var(--glow);} 50%{box-shadow:0 0 22px rgba(176,77,255,0.8);} }
+    .music-pulse { animation: musicPulse 1.8s ease infinite; }
+
+    /* ─── BACK TO TOP ─── */
+    #back-to-top {
+      position: fixed;
+      bottom: 26px; right: 13px;
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 17px;
+      box-shadow: 0 4px 16px rgba(176, 77, 255, 0.45);
+      display: none;
+      z-index: 1000;
+      transition: all 0.3s ease;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #back-to-top:hover { transform: translateY(-3px); box-shadow: 0 8px 26px rgba(176,77,255,0.65); }
+
+    /* ─── MACHETE ─── */
+    #machete {
+      position: fixed;
+      width: 130px; height: 130px;
+      z-index: 9999;
+      cursor: pointer;
+      pointer-events: none;
+      opacity: 0;
+      left: -200px; top: 110%;
+      transition: filter 0.1s;
+      filter:
+        drop-shadow(0 0 5px rgba(176, 77, 255, 0.95))
+        drop-shadow(0 0 10px rgba(120, 40, 255, 0.6))
+        brightness(1.1);
+    }
+
+    /* Trail particles */
+    .machete-spark {
+      position: fixed;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9997;
+      animation: spark-fade 0.9s ease forwards;
+    }
+
+    @keyframes spark-fade {
+      0%   { opacity: 1; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.1); }
+    }
+
+    @keyframes machete-jump {
+      0%   { margin-top: 0px; }
+      30%  { margin-top: -28px; }
+      60%  { margin-top: -12px; }
+      100% { margin-top: 0px; }
+    }
+
+    /* ─── FLOATING ISLANDS ─── */
+    #island-left, #island-right {
+      position: fixed;
+      top: 50%;
+      width: 32vw;
+      max-width: 520px;
+      min-width: 180px;
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 22px 35px rgba(0,0,0,0.6));
+      user-select: none;
+    }
+
+    #island-left  { left: -8vw;  animation: island-float-l 8s ease-in-out infinite; }
+    #island-right { right: -8vw; animation: island-float-r 8s ease-in-out infinite; animation-delay: -4s; }
+
+    @keyframes island-float-l {
+      0%   { transform: translateY(calc(-50% + 0px))   rotate(-1.5deg); }
+      40%  { transform: translateY(calc(-50% - 2.5vh)) rotate(0.8deg);  }
+      70%  { transform: translateY(calc(-50% - 1.2vh)) rotate(2deg);    }
+      100% { transform: translateY(calc(-50% + 0px))   rotate(-1.5deg); }
+    }
+
+    @keyframes island-float-r {
+      0%   { transform: translateY(calc(-50% + 0px))   rotate(1.5deg);  }
+      40%  { transform: translateY(calc(-50% - 2.5vh)) rotate(-0.8deg); }
+      70%  { transform: translateY(calc(-50% - 1.2vh)) rotate(-2deg);   }
+      100% { transform: translateY(calc(-50% + 0px))   rotate(1.5deg);  }
+    }
+
+    /* ─── FLOATING ISLANDS ─── */
+    /* Clips islands so they never bleed over content */
+    body { overflow-x: hidden; }
+
+    #island-left, #island-right {
+      position: fixed;
+      top: 50%;
+      width: 32vw;
+      max-width: 520px;
+      min-width: 200px;
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: 0;
+      filter: drop-shadow(0 22px 35px rgba(0,0,0,0.6));
+      user-select: none;
+    }
+
+    /* Clip islands to their own half of the screen so they can't bleed into content */
+    #island-left  {
+      left: -8vw;
+      clip-path: inset(0 0 0 0);
+      /* clips anything that would go past ~30% from left */
+      clip-path: inset(0px max(0px, calc(100% - (30vw + 8vw))) 0px 0px);
+      animation: island-float-l 8s ease-in-out infinite;
+    }
+    #island-right {
+      right: -8vw;
+      clip-path: inset(0px 0px 0px max(0px, calc(100% - (30vw + 8vw))));
+      animation: island-float-r 8s ease-in-out infinite;
+      animation-delay: -4s;
+    }
+
+    @keyframes island-float-l {
+      0%   { transform: translateY(calc(-50% + 0px))   rotate(-1.5deg); }
+      40%  { transform: translateY(calc(-50% - 2.5vh)) rotate(0.8deg);  }
+      70%  { transform: translateY(calc(-50% - 1.2vh)) rotate(2deg);    }
+      100% { transform: translateY(calc(-50% + 0px))   rotate(-1.5deg); }
+    }
+
+    @keyframes island-float-r {
+      0%   { transform: translateY(calc(-50% + 0px))   rotate(1.5deg);  }
+      40%  { transform: translateY(calc(-50% - 2.5vh)) rotate(-0.8deg); }
+      70%  { transform: translateY(calc(-50% - 1.2vh)) rotate(-2deg);   }
+      100% { transform: translateY(calc(-50% + 0px))   rotate(1.5deg);  }
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center;
+      padding: 26px 20px;
+      color: rgba(147, 112, 187, 0.35);
+      font-size: 0.72em;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(176, 77, 255, 0.07);
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — широкий ПК, но тесный
+       ══════════════════════════════════════ */
+    @media (max-width: 1100px) {
+      #island-left, #island-right { width: 26vw; opacity: 0.5; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — планшет / маленький ПК
+       ══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      /* Header */
+      header { gap: 3px; padding: 10px 8px; flex-wrap: wrap; }
+      .logo-text { font-size: 0.95em; margin-right: 8px; }
+      header a { padding: 4px 8px; font-size: 0.68em; letter-spacing: 1px; }
+
+      /* Hero */
+      #hero { padding: 100px 16px 60px; }
+      .hero-title { font-size: clamp(2em, 7vw, 5em) !important; letter-spacing: 2px; }
+      .hero-sub { font-size: clamp(0.7em, 1.8vw, 0.95em); }
+
+      /* Cards */
+      :root { --card-w: 268px; --card-h: 460px; }
+      .wiki-block, .join-block { padding: 24px 18px; }
+      .about-inner { max-width: 100%; }
+
+      /* Islands — smaller, more transparent */
+      #island-left, #island-right { width: 22vw; opacity: 0.35; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — телефон (≤600px)
+       ══════════════════════════════════════ */
+    @media (max-width: 600px) {
+      /* Hide islands entirely on phone */
+      #island-left, #island-right { display: none; }
+
+      /* Header — hamburger-style wrap */
+      header {
+        padding: 8px 10px;
+        gap: 4px 6px;
+        justify-content: center;
+      }
+      .logo-text {
+        width: 100%;
+        text-align: center;
+        margin-right: 0;
+        margin-bottom: 4px;
+        font-size: 1em;
+      }
+      header a {
+        font-size: 0.62em;
+        padding: 4px 7px;
+        letter-spacing: 0.8px;
+      }
+
+      /* Hero */
+      #hero { padding: 130px 14px 50px; }
+      .hero-title {
+        font-size: clamp(1.6em, 11vw, 3.2em) !important;
+        letter-spacing: 1px;
+        line-height: 1.1;
+      }
+      .hero-sub {
+        font-size: 0.68em;
+        letter-spacing: 2px;
+      }
+      .hero-cta {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+      .btn { width: 80vw; max-width: 280px; justify-content: center; }
+
+      /* Social sidebar — move to bottom bar on mobile */
+      .top-buttons {
+        top: auto;
+        bottom: 70px;
+        right: 10px;
+        gap: 6px;
+      }
+      .top-button { width: 36px; height: 36px; }
+      .top-button svg { width: 16px; height: 16px; }
+
+      /* Music button */
+      #music-btn { width: 36px; height: 36px; }
+
+      /* Back to top */
+      #back-to-top { bottom: 16px; right: 10px; width: 36px; height: 36px; font-size: 14px; }
+
+      /* Sections */
+      #cards, #about, #socials, #faq, #join, #wiki-section, #chronicles {
+        padding: 60px 14px;
+      }
+      .section-title { font-size: clamp(1em, 5vw, 1.5em); }
+
+      /* Cards */
+      :root { --card-w: calc(100vw - 40px); --card-h: 420px; }
+      .cards-grid { gap: 20px; }
+
+      /* About */
+      .about-inner { padding: 0; }
+
+      /* Socials grid */
+      .socials-grid { grid-template-columns: 1fr; }
+      .info-grid    { grid-template-columns: 1fr; }
+
+      /* FAQ */
+      .faq-q { font-size: 0.8em; }
+      .faq-a { font-size: 0.8em; }
+
+      /* Wiki / Join blocks */
+      .wiki-block, .join-block {
+        padding: 20px 14px;
+        border-radius: 16px;
+      }
+
+      /* Machete — smaller on mobile */
+      #machete { width: 80px; height: 80px; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE — очень маленький телефон
+       ══════════════════════════════════════ */
+    @media (max-width: 380px) {
+      .hero-title { font-size: clamp(1.3em, 10vw, 2.4em) !important; }
+      header a { font-size: 0.56em; padding: 3px 5px; }
+      :root { --card-w: calc(100vw - 28px); --card-h: 400px; }
+    }
+    /* ─── CHRONICLES ─── */
+    #chronicles {
+      padding: 90px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chronicles-desc {
+      text-align: center;
+      font-size: 0.9em;
+      color: var(--muted);
+      letter-spacing: 1px;
+      margin-bottom: 50px;
+    }
+
+    .chronicles-feed {
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    .chronicles-feed::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(176,77,255,0.35), rgba(176,77,255,0.35), transparent);
+      transform: translateX(-50%);
+    }
+
+    .chronicle-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 0 0 40px 0;
+      width: 47%;
+      position: relative;
+      margin-left: 0;
+    }
+
+    .chronicle-card.chr-right {
+      margin-left: auto;
+      flex-direction: row-reverse;
+    }
+
+    .chr-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'PixelMC', 'Raleway', sans-serif;
+      font-size: 1.1em;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 16px rgba(176,77,255,0.4);
+      position: relative;
+      z-index: 1;
+    }
+
+    .chr-body {
+      background: rgba(176, 77, 255, 0.055);
+      border: 1px solid rgba(176,77,255,0.18);
+      border-radius: 16px;
+      padding: 16px 18px;
+      flex: 1;
+      transition: all 0.3s ease;
+    }
+
+    .chr-body:hover {
+      background: rgba(176,77,255,0.1);
+      border-color: rgba(176,77,255,0.35);
+      transform: translateY(-2px);
+    }
+
+    .chr-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 10px;
+    }
+
+    .chr-name {
+      font-weight: 700;
+      font-size: 0.9em;
+      color: var(--accent3);
+      letter-spacing: 1px;
+    }
+
+    .chr-tag {
+      font-size: 0.72em;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .chr-text {
+      font-size: 0.88em;
+      color: #c4a4e4;
+      line-height: 1.75;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .chr-footer {
+      margin-top: 10px;
+    }
+
+    .chr-season {
+      font-size: 0.72em;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    .chr-add-note {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.8em;
+      color: rgba(147,112,187,0.45);
+      letter-spacing: 1px;
+      font-style: italic;
+      border: 1px dashed rgba(176,77,255,0.18);
+      border-radius: 14px;
+      padding: 16px 24px;
+    }
+
+    @media (max-width: 600px) {
+      .chronicles-feed::before { left: 22px; transform: none; }
+      .chronicle-card, .chronicle-card.chr-right {
+        width: 100%;
+        margin-left: 0;
+        flex-direction: row;
+        padding-left: 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <span class="logo-text">SquareFox</span>
+    <a href="#hero">Главная</a>
+    <a href="#cards">Персонажи</a>
+    <a href="#about">О проекте</a>
+    <a href="#faq">FAQ</a>
+    <a href="#socials">Соцсети</a>
+
+    <a href="#contacts">Контакты</a>
+    <a href="https://squarefox.fandom.com/ru/wiki/SquareFox" target="_blank" class="wiki-link">📖 Вики</a>
+    <a href="roulette.html" class="wiki-link" style="background:rgba(176,77,255,0.18);border-color:rgba(176,77,255,0.4);">🎰 Рулетка</a>
+  </header>
+
+
+  <!-- VOLUME PANEL -->
+  <div class="volume-panel" id="volume-panel">
+    <div class="volume-panel-inner">
+      <span class="volume-label">Громкость</span>
+      <span class="vol-icon">🔊</span>
+      <input type="range" class="vol-slider" id="vol-slider" min="0" max="100" value="55" orient="vertical">
+      <span class="volume-value" id="vol-value">55%</span>
+      <span class="vol-icon">🔇</span>
+    </div>
+  </div>
+
+  <!-- SOCIAL SIDEBAR -->
+  <div class="top-buttons">
+    <button id="toggle-music" class="top-button" title="Музыка">
+      <svg id="sound-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+      </svg>
+    </button>
+    <a href="https://discord.gg/3fe3fmDXgz" target="_blank" class="top-button" title="Discord">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M14.82 4.26a10.14 10.14 0 0 0-.53 1.1 14.66 14.66 0 0 0-4.58 0 10.14 10.14 0 0 0-.53-1.1 16 16 0 0 0-4.13 1.3 17.33 17.33 0 0 0-3 11.59 16.6 16.6 0 0 0 5.07 2.59A12.89 12.89 0 0 0 8.23 18a9.65 9.65 0 0 1-1.71-.83 3.39 3.39 0 0 0 .42-.33 11.66 11.66 0 0 0 10.12 0q.21.18.42.33a10.84 10.84 0 0 1-1.71.83 12.41 12.41 0 0 0 1.08 1.78 16.44 16.44 0 0 0 5.06-2.59 17.22 17.22 0 0 0-3-11.59 16.09 16.09 0 0 0-4.09-1.35zM8.68 14.81a1.94 1.94 0 0 1-1.8-2 1.93 1.93 0 0 1 1.8-2 1.93 1.93 0 0 1 1.8 2 1.93 1.93 0 0 1-1.8 2zm6.64 0a1.94 1.94 0 0 1-1.8-2 1.93 1.93 0 0 1 1.8-2 1.92 1.92 0 0 1 1.8 2 1.92 1.92 0 0 1-1.8 2z"/>
+      </svg>
+    </a>
+    <a href="https://vk.com/squarefox_off" target="_blank" class="top-button" title="ВКонтакте">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm.84 12.27a1.07 1.07 0 0 1-.75.11c-.26 0-.51-.04-.75-.11-1.03 0-1.5-.63-2.11-1.56-.47-.72-.82-1.22-1.62-1.22-.27 0-.53.08-.76.25-.28.21-.43.53-.43.9 0 .84.58 1.64 1.65 2.77 1.17 1.24 1.81 1.89 2.83 1.89 1.27 0 1.91-.67 1.91-1.8 0-.56-.14-1.03-.42-1.41-.23-.32-.63-.53-1.06-.6z"/>
+      </svg>
+    </a>
+    <a href="https://t.me/SquareF0x" target="_blank" class="top-button" title="Telegram">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.69 1.03-.59.06-1.03-.39-1.6-.76-.89-.58-1.39-.94-2.25-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.18.18 0 0 0-.14-.12c-.05.01-3.08 1.96-4.38 2.86-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.13-.31-1.09-.66.02-.18.27-.37.75-.56 2.57-1.06 4.29-1.77 6.39-2.71.96-.42 1.92-.89 2.83-1.34.41-.19.78-.28 1.06-.27.34.01.93.2.93.74-.01.25-.15.83-.23 1.13z"/>
+      </svg>
+    </a>
+    <a href="https://www.youtube.com/@squarefox_minecraft" target="_blank" class="top-button" title="YouTube">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Действующий сезон: Отсутствует
+    </div>
+    <h1 class="hero-title">SquareFox</h1>
+    <p class="hero-sub">Творческое объединение · Создание уникального ЛОРА</p>
+    <div class="hero-divider"></div>
+    <div class="hero-cta">
+      <a href="#cards" class="btn btn-primary">Персонажи</a>
+      <a href="https://forms.gle/t6qPm4z9PUonZhF9A" target="_blank" class="btn btn-green">Подать анкету</a>
+      <a href="https://squarefox.fandom.com/ru/wiki/SquareFox" target="_blank" class="btn btn-outline">📖 Вики</a>
+    </div>
+    </section>
+
+  <!-- CARDS -->
+  <section id="cards">
+    <h2 class="section-title">Команда</h2>
+    <div class="section-rule"></div>
+    <div class="cards-grid">
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Дез.png" alt="Дезгай"></div>
+          <div class="card-back">
+            <h2>Дезгай</h2>
+            <p>Неформал, увлекающийся паранормальщиной, который стал на половину дьяволом после входа в портал в ад. Был предан своими людьми и заключён в незере. После долгих скитаний встретил дьявола, который вкачал нечистую кровь в его левую руку, дабы переселиться в тело смертного.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Милави.png" alt="Милави"></div>
+          <div class="card-back">
+            <h2>Милави</h2>
+            <p>— Well well well.. Кажется, ко мне приближаются новые знакомства..<br><br>Впервые появилась на SF2. Путешествуя между вселенными, наркозависимая приняла одну истину: «Мы на краю. Далеко от центра. Тут безопасно».</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Нэрзи.png" alt="НЭРЗ"></div>
+          <div class="card-back">
+            <h2>Нэрз</h2>
+            <p>Человек, чья судьба покрыта мраком и ядерной пылью. В междумирье провёл больше времени, чем прожил в родном мире. Самоуверенный и не самый приятный парень, который всё же мог бы составить компанию посреди ничего.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Рина.png" alt="Рина"></div>
+          <div class="card-back">
+            <h2>Рина</h2>
+            <p>Талантливая рэперша, мечтавшая о славе. Теперь она в бесконечном междумирье без сцен и фанатов. Но Рина не сдаётся — она строит аудиторию с нуля. Сумеет ли она стать легендой в потустороннем мире?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Скром.png" alt="Скром"></div>
+          <div class="card-back">
+            <h2>Скромник</h2>
+            <p>— Когда я кого-то спасаю, неважно человек это или монстр — если они просят о помощи, этого более чем достаточно!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Сода.png" alt="Сода"></div>
+          <div class="card-back">
+            <h2>Сода</h2>
+            <p>Содари — спокойный парень, любит поболтать, но осторожен с незнакомцами. Странные мысли и воспоминания преследуют его. А может, кто-то преследует его — в голове?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-inner">
+          <div class="card-front"><img src="Кефир.png" alt="Кефир"></div>
+          <div class="card-back">
+            <h2>Кефир</h2>
+            <p>"— Если мои расчеты верны, то его корпус должен выдержать перемещение. Когда окажется в другом месте я получу сигнал через несколько дней о состоянии его активности, и тогда уже можно пытаться переместится самой. Проблема в том, что я не знаю куда попадет модель 385, но это, в целом, не так уж и важно, полагаю." 
+Фрагмент из дневника подписанного некой Л.
+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">О проекте</h2>
+    <div class="section-rule"></div>
+    <div class="about-inner">
+      <p class="about-desc">SF — это творческое объединение контент-мейкеров, имеющее корни в сфере «Приватных серверов». Небольшой коллектив создаёт уникальный ЛОР, отыгрывает РолПлей в разных историях, где каждый сезон — это тематическая история на уникальную тему, или часть общего концепта межпространства. Мы создаём уникальные сборки и проходим существующие, превращая стандартный геймплей в РП-погружение.
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="ic-icon">⚔️</div>
+          <h3>Что есть на SF?</h3>
+          <ul>
+            <li>Уникальный ЛОР мира и персонажей</li>
+            <li>РП — полное погружение в историю</li>
+            <li>Сезоны — отдельные истории или части общего лора</li>
+            <li>Уникальные и существующие сборки</li>
+            <li>Творческий коллектив единомышленников</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="ic-icon">🎮</div>
+          <h3>Формат проекта</h3>
+          <p>Мы создаём уникальные сборки или проходим существующие — превращая геймплей в полноценное ролевое погружение, и демонстрируя это аудитории.</p>
+          <div class="mc-version">Творческое объединение</div>
+        </div>
+
+        <div class="info-card">
+          <div class="ic-icon">👑</div>
+          <h3>Почему анкета?</h3>
+          <p>SF — это творческое объединение узкого круга лиц (Друзей). Нам важна атмосфера, вовлечённость и готовность участвовать в создании живого лора вместе с командой, привнося в проект что-то новое.</p>
+        </div>
+
+        <div class="info-card">
+          <div class="ic-icon">📅</div>
+          <h3>Текущий сезон</h3>
+          <p>На данный момент прямого набора нет, однако анкеты рассматриваются. Следи за нашими соцсетями, чтобы не пропустить новости!</p>
+        </div>
+      </div>
+
+      <!-- JOIN CTA -->
+      <div class="join-block">
+        <h3>Хочешь присоединиться?</h3>
+        <p>Прямого набора на сервер сейчас нет, но анкеты рассматриваются. Заполни честно и подробно — мы свяжемся, когда появится возможность.</p>
+        <div class="join-buttons">
+          <a href="https://forms.gle/t6qPm4z9PUonZhF9A" target="_blank" class="btn btn-green">🎮 Анкета игрока</a>
+          <a href="https://forms.gle/bn2feT7BW99PSmVp9" target="_blank" class="btn btn-outline">🛡️ Анкета администратора</a>
+        </div>
+      </div>
+
+      <!-- WIKI -->
+      <div class="wiki-block">
+        <div class="wiki-icon">📖</div>
+        <h3>Вики SquareFox</h3>
+        <p>ЛОР предыдущих сезонов проекта — персонажи, события и история мира SF задокументированы на фэндом-вики.</p>
+        <div class="wiki-versions">
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox" target="_blank" class="wiki-tag">SquareFox</a>
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox_1" target="_blank" class="wiki-tag">SF 1</a>
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox_2" target="_blank" class="wiki-tag">SF 2</a>
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox_3" target="_blank" class="wiki-tag">SF 3</a>
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox_4" target="_blank" class="wiki-tag">SF 4</a>
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox_Zombie" target="_blank" class="wiki-tag">SF Zombie</a>
+          <a href="https://squarefox.fandom.com/ru/wiki/SquareFox_OneBlock" target="_blank" class="wiki-tag">OneBlock</a>
+        </div>
+        <a href="https://squarefox.fandom.com/ru/wiki/SquareFox" target="_blank" class="btn btn-primary" style="margin-top:10px; font-size:0.8em; padding:10px 22px;">Открыть вики →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">FAQ</h2>
+    <div class="section-rule"></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Что такое SquareFox?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>SF — это творческое объединение контент-мейкеров, имеющее корни в сфере «Приватных серверов». Небольшой коллектив создаёт уникальный ЛОР, отыгрывает РолПлей в разных историях, где каждый сезон — тематическая история или часть общего концепта межпространства.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Как попасть на сервер?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>
+            1. Перейди по ссылке и заполни анкету честно и подробно: <a href="https://forms.gle/t6qPm4z9PUonZhF9A" target="_blank">forms.gle/t6qPm4z9PUonZhF9A</a><br><br>
+            2. На данный момент прямого набора нет, однако все анкеты рассматриваются.<br><br>
+            3. При появлении возможности мы свяжемся с тобой и предоставим всю информацию.
+          </p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Почему нужен отбор?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>SF — это творческое объединение узкого круга лиц (Друзей). Нам важна атмосфера, вовлечённость и готовность участвовать в создании живого лора вместе с командой, привнося в проект что-то новое.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Какая версия Minecraft?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>Мы играем на <strong>Java Edition, версия 1.21.1</strong>. Требуется лицензионный аккаунт Minecraft.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Что происходит на сервере?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>Команда создаёт и отыгрывает ролевые истории с уникальным лором. Каждый сезон — тематическая история или часть общего концепта межпространства. Мы создаём уникальные сборки или проходим существующие, превращая геймплей в полноценное РП-погружение, и демонстрируя это аудитории.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Как стать администратором?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>Для попадания в состав администрации важна большая преданность и осознание ответственности. Набор в состав всегда открыт — подай анкету: <a href="https://forms.gle/bn2feT7BW99PSmVp9" target="_blank">forms.gle/bn2feT7BW99PSmVp9</a></p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">
+          Когда откроется новый сезон?
+          <span class="faq-arrow"></span>
+        </button>
+        <div class="faq-a">
+          <p>Прямого набора на сервер сейчас нет, но анкеты рассматриваются. Следи за нашими соцсетями — все новости и анонсы будут там первыми. Подписывайся на <a href="https://t.me/SquareF0x" target="_blank">Telegram</a> и <a href="https://vk.com/squarefox_off" target="_blank">ВКонтакте</a>, чтобы не пропустить!</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOCIALS -->
+  <section id="socials">
+    <h2 class="section-title">Соцсети</h2>
+    <div class="section-rule"></div>
+    <p class="socials-desc">Следи за проектом — публикуем новости, лор и анонсы новых историй</p>
+    <div class="socials-grid">
+
+      <a href="https://youtube.com/@squarefox_minecraft" target="_blank" class="social-card sc-yt">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+        </div>
+        <div class="sc-info">
+          <strong>YouTube</strong>
+          <span>@squarefox_minecraft</span>
+        </div>
+        <span class="sc-arrow">→</span>
+      </a>
+
+      <a href="https://www.tiktok.com/@squaref0x" target="_blank" class="social-card sc-tt">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24"><path fill="white" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.13a8.16 8.16 0 004.77 1.52V7.18a4.85 4.85 0 01-1-.49z"/></svg>
+        </div>
+        <div class="sc-info">
+          <strong>TikTok</strong>
+          <span>@squaref0x</span>
+        </div>
+        <span class="sc-arrow">→</span>
+      </a>
+
+      <a href="https://vk.com/squarefox_off" target="_blank" class="social-card sc-vk">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24"><path d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm.84 12.27a1.07 1.07 0 01-.75.11c-.26 0-.51-.04-.75-.11-1.03 0-1.5-.63-2.11-1.56-.47-.72-.82-1.22-1.62-1.22-.27 0-.53.08-.76.25-.28.21-.43.53-.43.9 0 .84.58 1.64 1.65 2.77 1.17 1.24 1.81 1.89 2.83 1.89 1.27 0 1.91-.67 1.91-1.8 0-.56-.14-1.03-.42-1.41-.23-.32-.63-.53-1.06-.6z"/></svg>
+        </div>
+        <div class="sc-info">
+          <strong>ВКонтакте</strong>
+          <span>squarefox_off</span>
+        </div>
+        <span class="sc-arrow">→</span>
+      </a>
+
+      <a href="https://t.me/SquareF0x" target="_blank" class="social-card sc-tg">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.69 1.03-.59.06-1.03-.39-1.6-.76-.89-.58-1.39-.94-2.25-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.18.18 0 00-.14-.12c-.05.01-3.08 1.96-4.38 2.86-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.13-.31-1.09-.66.02-.18.27-.37.75-.56 2.57-1.06 4.29-1.77 6.39-2.71.96-.42 1.92-.89 2.83-1.34.41-.19.78-.28 1.06-.27.34.01.93.2.93.74-.01.25-.15.83-.23 1.13z"/></svg>
+        </div>
+        <div class="sc-info">
+          <strong>Telegram</strong>
+          <span>@SquareF0x</span>
+        </div>
+        <span class="sc-arrow">→</span>
+      </a>
+
+      <a href="https://discord.gg/3fe3fmDXgz" target="_blank" class="social-card sc-dc">
+        <div class="sc-icon">
+          <svg viewBox="0 0 24 24"><path d="M14.82 4.26a10.14 10.14 0 00-.53 1.1 14.66 14.66 0 00-4.58 0 10.14 10.14 0 00-.53-1.1 16 16 0 00-4.13 1.3 17.33 17.33 0 00-3 11.59 16.6 16.6 0 005.07 2.59A12.89 12.89 0 008.23 18a9.65 9.65 0 01-1.71-.83 3.39 3.39 0 00.42-.33 11.66 11.66 0 0010.12 0q.21.18.42.33a10.84 10.84 0 01-1.71.83 12.41 12.41 0 001.08 1.78 16.44 16.44 0 005.06-2.59 17.22 17.22 0 00-3-11.59 16.09 16.09 0 00-4.09-1.35zM8.68 14.81a1.94 1.94 0 01-1.8-2 1.93 1.93 0 011.8-2 1.93 1.93 0 011.8 2 1.93 1.93 0 01-1.8 2zm6.64 0a1.94 1.94 0 01-1.8-2 1.93 1.93 0 011.8-2 1.92 1.92 0 011.8 2 1.92 1.92 0 01-1.8 2z"/></svg>
+        </div>
+        <div class="sc-info">
+          <strong>Discord</strong>
+          <span>discord.gg/3fe3fmDXgz</span>
+        </div>
+        <span class="sc-arrow">→</span>
+      </a>
+
+    </div>
+
+    <!-- ADMINS -->
+    <div class="admin-block">
+      <h3>🛡️ Администрация</h3>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <span class="role">Администратор</span>
+          <span class="name">Milavi</span>
+          <div class="handles">
+            <span>TG: @milavivlo</span>
+            <span>DC: _milavi</span>
+          </div>
+        </div>
+        <div class="admin-card">
+          <span class="role">Администратор</span>
+          <span class="name">Nerzota</span>
+          <div class="handles">
+            <span>TG: @Nerzota916</span>
+            <span>DC: nerzota916_</span>
+          </div>
+        </div>
+        <div class="admin-card" style="justify-content:center; align-items:center; text-align:center;">
+          <span class="role" style="margin-bottom:6px;">Хочешь в команду?</span>
+          <a href="https://forms.gle/bn2feT7BW99PSmVp9" target="_blank" class="btn btn-outline" style="font-size:0.75em; padding:8px 16px; margin-top:4px;">Подать анкету</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTS -->
+  <section id="contacts">
+    <h2 class="section-title">Контакты</h2>
+    <div class="section-rule"></div>
+    <div class="contacts-grid">
+
+      <a href="https://t.me/milavivlo" target="_blank" class="contact-card">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.69 1.03-.59.06-1.03-.39-1.6-.76-.89-.58-1.39-.94-2.25-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.18.18 0 00-.14-.12c-.05.01-3.08 1.96-4.38 2.86-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.13-.31-1.09-.66.02-.18.27-.37.75-.56 2.57-1.06 4.29-1.77 6.39-2.71.96-.42 1.92-.89 2.83-1.34.41-.19.78-.28 1.06-.27.34.01.93.2.93.74-.01.25-.15.83-.23 1.13z"/></svg>
+        <div class="contact-info">
+          <strong>Telegram</strong>
+          <span>@milavivlo</span>
+        </div>
+      </a>
+
+      <a href="https://t.me/Nerzota916" target="_blank" class="contact-card">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.69 1.03-.59.06-1.03-.39-1.6-.76-.89-.58-1.39-.94-2.25-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.18.18 0 00-.14-.12c-.05.01-3.08 1.96-4.38 2.86-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.13-.31-1.09-.66.02-.18.27-.37.75-.56 2.57-1.06 4.29-1.77 6.39-2.71.96-.42 1.92-.89 2.83-1.34.41-.19.78-.28 1.06-.27.34.01.93.2.93.74-.01.25-.15.83-.23 1.13z"/></svg>
+        <div class="contact-info">
+          <strong>Telegram</strong>
+          <span>@Nerzota916</span>
+        </div>
+      </a>
+
+      <div class="contact-card" style="cursor:default;">
+        <svg viewBox="0 0 24 24"><path d="M14.82 4.26a10.14 10.14 0 00-.53 1.1 14.66 14.66 0 00-4.58 0 10.14 10.14 0 00-.53-1.1 16 16 0 00-4.13 1.3 17.33 17.33 0 00-3 11.59 16.6 16.6 0 005.07 2.59A12.89 12.89 0 008.23 18a9.65 9.65 0 01-1.71-.83 3.39 3.39 0 00.42-.33 11.66 11.66 0 0010.12 0q.21.18.42.33a10.84 10.84 0 01-1.71.83 12.41 12.41 0 001.08 1.78 16.44 16.44 0 005.06-2.59 17.22 17.22 0 00-3-11.59 16.09 16.09 0 00-4.09-1.35zM8.68 14.81a1.94 1.94 0 01-1.8-2 1.93 1.93 0 011.8-2 1.93 1.93 0 011.8 2 1.93 1.93 0 01-1.8 2zm6.64 0a1.94 1.94 0 01-1.8-2 1.93 1.93 0 011.8-2 1.92 1.92 0 011.8 2 1.92 1.92 0 01-1.8 2z"/></svg>
+        <div class="contact-info">
+          <strong>Discord</strong>
+          <span>nerzota916_</span>
+        </div>
+      </div>
+
+      <div class="contact-card" style="cursor:default;">
+        <svg viewBox="0 0 24 24"><path d="M14.82 4.26a10.14 10.14 0 00-.53 1.1 14.66 14.66 0 00-4.58 0 10.14 10.14 0 00-.53-1.1 16 16 0 00-4.13 1.3 17.33 17.33 0 00-3 11.59 16.6 16.6 0 005.07 2.59A12.89 12.89 0 008.23 18a9.65 9.65 0 01-1.71-.83 3.39 3.39 0 00.42-.33 11.66 11.66 0 0010.12 0q.21.18.42.33a10.84 10.84 0 01-1.71.83 12.41 12.41 0 001.08 1.78 16.44 16.44 0 005.06-2.59 17.22 17.22 0 00-3-11.59 16.09 16.09 0 00-4.09-1.35zM8.68 14.81a1.94 1.94 0 01-1.8-2 1.93 1.93 0 011.8-2 1.93 1.93 0 011.8 2 1.93 1.93 0 01-1.8 2zm6.64 0a1.94 1.94 0 01-1.8-2 1.93 1.93 0 011.8-2 1.92 1.92 0 011.8 2 1.92 1.92 0 01-1.8 2z"/></svg>
+        <div class="contact-info">
+          <strong>Discord</strong>
+          <span>_milavi</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>© SquareFox — Творить. Создавать. Стать семьёй.</footer>
+
+  <!-- AUDIO (autoplay with interaction fallback) -->
+  <audio id="bg-music" src="music.mp3" loop preload="auto"></audio>
+  <img id="machete" src="machete.png" alt="">
+  
+  <canvas id="starfield"></canvas>
+  <button id="back-to-top">↑</button>
+
+  <!-- Декоративные острова -->
+  <img id="island-left"  src="Остров1.png" alt="">
+  <img id="island-right" src="Остров2.png" alt="">
+
+  <script>
+    // ─── MUSIC (autoplay + interaction fallback) ───
+    const music = document.getElementById('bg-music');
+    const btn   = document.getElementById('toggle-music');
+    const icon  = document.getElementById('sound-icon');
+
+    const ICON_ON  = '<path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>';
+    const ICON_OFF = '<path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>';
+
+    function setMusicUI(playing) {
+      icon.innerHTML = playing ? ICON_ON : ICON_OFF;
+      btn.classList.toggle('music-pulse', playing);
+    }
+
+    // Try autoplay immediately
+    music.volume = 0.55;
+    music.play().then(() => {
+      setMusicUI(true);
+    }).catch(() => {
+      // Autoplay blocked — wait for first user interaction
+      setMusicUI(false);
+      const tryAutoplay = () => {
+        music.play().then(() => {
+          setMusicUI(true);
+          document.removeEventListener('click', tryAutoplay);
+          document.removeEventListener('keydown', tryAutoplay);
+        }).catch(() => {});
+      };
+      document.addEventListener('click', tryAutoplay);
+      document.addEventListener('keydown', tryAutoplay);
+    });
+
+    // Volume panel
+    const volPanel = document.getElementById('volume-panel');
+    const volSlider = document.getElementById('vol-slider');
+    const volValue = document.getElementById('vol-value');
+
+    // Click = toggle play/pause AND show volume panel
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      volPanel.classList.toggle('visible');
+      if (music.paused) {
+        music.play().then(() => setMusicUI(true)).catch(() => {});
+      } else {
+        music.pause();
+        setMusicUI(false);
+      }
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!volPanel.contains(e.target) && e.target !== btn) {
+        volPanel.classList.remove('visible');
+      }
+    });
+
+    // Prevent slider clicks from closing panel
+    volPanel.addEventListener('click', (e) => e.stopPropagation());
+
+    volSlider.addEventListener('input', () => {
+      const val = volSlider.value;
+      music.volume = val / 100;
+      volValue.textContent = val + '%';
+      const icons = document.querySelectorAll('.vol-icon');
+      if (val == 0) icons[0].textContent = '🔇';
+      else if (val < 40) icons[0].textContent = '🔉';
+      else icons[0].textContent = '🔊';
+    });
+
+    // ─── FAQ ACCORDION ───
+    document.querySelectorAll('.faq-q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ─── MACHETE ───
+    const machete = document.getElementById('machete');
+    const laughAudio = new Audio('Смех.mp3');
+
+    // Spawn spark particles
+    function spawnSparks(x, y) {
+      const colors = ['#c97fff', '#a040ff', '#ff90ff', '#7b2fff', '#ffffff'];
+      for (let i = 0; i < 3; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'machete-spark';
+        const size = Math.random() * 8 + 3;
+        spark.style.cssText = `
+          width:${size}px; height:${size}px;
+          left:${x + (Math.random()-0.5)*30}px;
+          top:${y + (Math.random()-0.5)*30}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          box-shadow: 0 0 ${size*2}px ${colors[0]};
+          animation-duration: ${0.6 + Math.random()*0.5}s;
+        `;
+        document.body.appendChild(spark);
+        spark.addEventListener('animationend', () => spark.remove());
+      }
+    }
+
+    // Cubic bezier point: P0, P1, P2, P3 at parameter t
+    function bezier(t, p0, p1, p2, p3) {
+      const u = 1 - t;
+      return u*u*u*p0 + 3*u*u*t*p1 + 3*u*t*t*p2 + t*t*t*p3;
+    }
+
+    // Derivative (tangent direction)
+    function bezierD(t, p0, p1, p2, p3) {
+      const u = 1 - t;
+      return 3*u*u*(p1-p0) + 6*u*t*(p2-p1) + 3*t*t*(p3-p2);
+    }
+
+    const FLIGHT_DURATION = 22000;
+    let macheteProgress = 0;
+    let lastTime = null;
+    let sparkTick = 0;
+    let clickFlash = 0; // countdown ms for white flash
+
+    // Curve control points — defined as fractions of vw/vh, set at start
+    let C = null;
+    function buildCurve() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      C = {
+        // Start: bottom-left off screen
+        x0: -160, y0: vh + 160,
+        // Control 1: lower-left area — gives initial steep upward momentum
+        x1: vw * 0.15, y1: vh * 0.65,
+        // Control 2: upper-center — graceful arc
+        x2: vw * 0.72, y2: vh * 0.08,
+        // End: top-right off screen
+        x3: vw + 180, y3: -160,
+      };
+    }
+
+    // Smooth easing: ease-in-out over full flight
+    function easeInOut(t) {
+      return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+    }
+
+    function macheteLoop(ts) {
+      if (!lastTime) lastTime = ts;
+      const dt = Math.min(ts - lastTime, 50);
+      lastTime = ts;
+
+      macheteProgress += dt / FLIGHT_DURATION;
+
+      if (macheteProgress >= 1) {
+        machete.style.opacity = '0';
+        machete.style.pointerEvents = 'none';
+        return;
+      }
+
+      const te = easeInOut(macheteProgress);
+      const td = macheteProgress;
+
+      const px = bezier(te, C.x0, C.x1, C.x2, C.x3);
+      const py = bezier(te, C.y0, C.y1, C.y2, C.y3);
+
+      // Tangent angle from bezier path
+      const dx = bezierD(td, C.x0, C.x1, C.x2, C.x3);
+      const dy = bezierD(td, C.y0, C.y1, C.y2, C.y3);
+      const pathAngle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+      // Layered slow wobble — two sine waves at different frequencies/phases
+      // gives organic, non-repetitive floating motion
+      const wobbleY =
+        Math.sin(ts / 3200) * 38 +          // slow big wave
+        Math.sin(ts / 1100 + 1.2) * 14;     // faster small ripple
+
+      // Angle wobble layered on top of path angle — feels like tumbling slowly
+      const wobbleAngle =
+        Math.sin(ts / 3800) * 28 +          // slow tilt
+        Math.sin(ts / 1500 + 2.5) * 10;     // slight flutter
+
+      const finalAngle = pathAngle + wobbleAngle;
+      const finalY     = py + wobbleY;
+
+      // Fade in/out
+      let opacity = 1;
+      if (macheteProgress < 0.04) opacity = macheteProgress / 0.04;
+      if (macheteProgress > 0.92) opacity = (1 - macheteProgress) / 0.08;
+
+      // Glow pulse
+      const glow  = 4 + Math.sin(ts / 320) * 2;
+      const glow2 = 9 + Math.sin(ts / 550) * 3;
+
+      // Click flash
+      let filterStr;
+      if (clickFlash > 0) {
+        clickFlash -= dt;
+        const f = Math.min(clickFlash / 180, 1);
+        filterStr = `drop-shadow(0 0 ${15*f + glow}px rgba(255,255,255,${f})) drop-shadow(0 0 ${glow2}px rgba(120,40,255,0.6)) brightness(${1.1 + f * 1.0})`;
+      } else {
+        filterStr = `drop-shadow(0 0 ${glow}px rgba(176,77,255,0.95)) drop-shadow(0 0 ${glow2}px rgba(120,40,255,0.6)) brightness(1.1)`;
+      }
+
+      machete.style.left      = px + 'px';
+      machete.style.top       = finalY + 'px';
+      machete.style.transform = `rotate(${finalAngle}deg)`;
+      machete.style.opacity   = opacity;
+      machete.style.filter    = filterStr;
+
+      // Sparks
+      sparkTick += dt;
+      if (sparkTick > 75) {
+        const vw = window.innerWidth;
+        if (px > -80 && px < vw + 80) spawnSparks(px + 65, finalY + 65);
+        sparkTick = 0;
+      }
+
+      requestAnimationFrame(macheteLoop);
+    }
+
+    window.addEventListener('load', () => {
+      buildCurve();
+      setTimeout(() => {
+        machete.style.pointerEvents = 'auto';
+        requestAnimationFrame(macheteLoop);
+      }, 800);
+    });
+
+    // Click = laugh + flash only, flight continues uninterrupted
+    machete.addEventListener('click', () => {
+      laughAudio.currentTime = 0;
+      laughAudio.play().catch(() => {});
+      clickFlash = 220; // ms of white flash
+    });
+
+    // ─── STARFIELD ───
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [], w, h;
+
+    function initStars() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      stars = Array.from({ length: 240 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.3 + 0.28,
+        dx: (Math.random() - 0.5) * 0.3,
+        dy: (Math.random() - 0.5) * 0.3,
+        op: Math.random() * 0.5 + 0.45
+      }));
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, w, h);
+      for (let s of stars) {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255,255,255,${s.op})`;
+        ctx.fill();
+        s.x += s.dx; s.y += s.dy;
+        if (s.x < 0 || s.x > w || s.y < 0 || s.y > h) {
+          s.x = Math.random() * w; s.y = Math.random() * h;
+        }
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    window.addEventListener('resize', initStars);
+    initStars(); animateStars();
+
+    // ─── MOUSE TRAIL ───
+    let lastMouseX = -999, lastMouseY = -999, mouseMoved = false;
+
+    document.addEventListener('mousemove', (e) => {
+      const dx = e.clientX - lastMouseX;
+      const dy = e.clientY - lastMouseY;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 12) return; // throttle — only spawn when moved enough
+      lastMouseX = e.clientX;
+      lastMouseY = e.clientY;
+
+      const colors = ['#c97fff', '#a040ff', '#ff90ff', '#7b2fff', '#ffffff'];
+      const count = Math.floor(Math.random() * 2) + 1;
+      for (let i = 0; i < count; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'machete-spark';
+        const size = Math.random() * 5 + 2;
+        const dur  = 0.5 + Math.random() * 0.5;
+        spark.style.cssText = `
+          width:${size}px; height:${size}px;
+          left:${e.clientX + (Math.random()-0.5)*12}px;
+          top:${e.clientY + (Math.random()-0.5)*12}px;
+          background:${colors[Math.floor(Math.random()*colors.length)]};
+          box-shadow: 0 0 ${size*2}px rgba(176,77,255,0.8);
+          animation-duration:${dur}s;
+        `;
+        document.body.appendChild(spark);
+        spark.addEventListener('animationend', () => spark.remove());
+      }
+    });
+
+    // ─── CARD REVEAL ───
+    const cards = document.querySelectorAll('.card');
+    function showCards() {
+      const trigger = window.innerHeight * 0.92;
+      cards.forEach((card, i) => {
+        if (card.getBoundingClientRect().top < trigger)
+          setTimeout(() => card.classList.add('visible'), i * 65);
+      });
+    }
+    window.addEventListener('scroll', showCards);
+    window.addEventListener('load', showCards);
+
+    // ─── ACTIVE NAV ───
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('header a[href^="#"]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => { if (scrollY >= sec.offsetTop - 130) current = sec.id; });
+      navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+    });
+
+    // ─── BACK TO TOP ───
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
+    });
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // ─── PARALLAX ───
+    // Disabled: was causing stars to drift down and disappear on scroll
+  </script>
+</body>
+</html>
