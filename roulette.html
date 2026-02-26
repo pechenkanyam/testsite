@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <link rel="icon" href="icon.png" type="image/png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кто ты из SF? — SquareFox</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07000f;
+      --bg2: #0f0020;
+      --accent: #b04dff;
+      --accent2: #7a1fff;
+      --accent3: #d480ff;
+      --glow: rgba(160,60,255,0.38);
+      --text: #e8d5ff;
+      --muted: #9370bb;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      font-family: 'Raleway', sans-serif;
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    #starfield { position: fixed; inset: 0; z-index: 0; }
+
+    /* HEADER */
+    header {
+      position: fixed; top: 0; left: 0; width: 100%;
+      background: rgba(7,0,16,0.92);
+      border-bottom: 1px solid rgba(176,77,255,0.15);
+      backdrop-filter: blur(16px);
+      display: flex; justify-content: center; align-items: center;
+      gap: 4px; padding: 13px 16px; z-index: 1000; flex-wrap: wrap;
+    }
+    .logo-text {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 1em; color: var(--accent);
+      letter-spacing: 3px; margin-right: 18px;
+      text-shadow: 0 0 18px var(--glow), 0 2px 0 #3a0070;
+      text-decoration: none;
+    }
+    header a {
+      color: var(--muted); text-decoration: none;
+      font-weight: 600; font-size: 0.78em;
+      letter-spacing: 1.5px; text-transform: uppercase;
+      padding: 6px 12px; border-radius: 20px;
+      transition: all 0.3s ease; border: 1px solid transparent;
+    }
+    header a:hover, header a.active {
+      color: #fff; border-color: rgba(176,77,255,0.4);
+      background: rgba(176,77,255,0.12);
+    }
+    header a.special {
+      background: rgba(176,77,255,0.12);
+      border-color: rgba(176,77,255,0.3); color: var(--accent3);
+    }
+    header a.special:hover { background: rgba(176,77,255,0.26); color: #fff; }
+
+    /* PAGE */
+    .page-wrap {
+      position: relative; z-index: 1;
+      padding-top: 80px; min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 60px 20px 36px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(176,77,255,0.1);
+      border: 1px solid rgba(176,77,255,0.3);
+      border-radius: 30px; padding: 6px 18px;
+      font-size: 0.72em; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--accent3);
+      animation: fadeDown 0.8s ease both;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; background: var(--accent);
+      border-radius: 50%; animation: blink 1.8s ease infinite;
+      box-shadow: 0 0 8px var(--accent);
+    }
+    @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.2;} }
+    .hero-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(1.1em, 4.5vw, 2.2em);
+      color: #fff; line-height: 1.4; letter-spacing: 3px;
+      text-shadow: 0 0 30px var(--accent), 0 0 80px rgba(176,77,255,0.35), 0 4px 0 #2a0060;
+      animation: fadeDown 0.9s 0.1s ease both; opacity: 0; animation-fill-mode: forwards;
+    }
+    .hero-sub {
+      color: var(--muted); font-size: 0.86em;
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 300;
+      animation: fadeDown 0.9s 0.25s ease both; opacity: 0; animation-fill-mode: forwards;
+    }
+    .hero-divider {
+      width: 90px; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      animation: fadeDown 0.9s 0.35s ease both; opacity: 0; animation-fill-mode: forwards;
+    }
+
+    /* WHEEL AREA */
+    .wheel-area {
+      display: flex; flex-direction: column; align-items: center; gap: 26px;
+      padding: 0 20px 20px;
+      animation: fadeDown 0.9s 0.45s ease both; opacity: 0; animation-fill-mode: forwards;
+    }
+
+    /* OLEG */
+    .wheel-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      gap: 0px;
+      width: 100%;
+      position: relative;
+    }
+    #oleg-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      pointer-events: none;
+      position: absolute;
+      right: 50%;
+      margin-right: -80px;
+    }
+    #oleg-img {
+      width: 100%;
+      height: auto;
+      image-rendering: auto;
+      filter: drop-shadow(0 0 18px rgba(136,136,0,0.75));
+      display: block;
+    }
+    @media(max-width:600px){
+      #oleg-wrap { display: none; }
+    }
+    .wheel-wrap {
+      position: relative; display: flex;
+      align-items: center; justify-content: center;
+      z-index: 3;
+    }
+    .ring {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(176,77,255,0.16);
+      pointer-events: none; animation: rotateSlow linear infinite;
+    }
+    .ring-1 { width: 430px; height: 430px; animation-duration: 30s; }
+    .ring-2 { width: 476px; height: 476px; animation-duration: 55s;
+      animation-direction: reverse; border-style: dashed;
+      border-color: rgba(176,77,255,0.09); }
+    .wheel-pointer {
+      position: absolute; top: -20px; left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      border-top: 30px solid #ff4dff;
+      filter: drop-shadow(0 0 12px rgba(255,77,255,0.9));
+      z-index: 10;
+    }
+    canvas#wheel {
+      display: block; border-radius: 50%;
+      box-shadow:
+        0 0 0 3px rgba(176,77,255,0.25),
+        0 0 0 7px rgba(176,77,255,0.08),
+        0 0 70px rgba(160,60,255,0.55),
+        0 0 140px rgba(160,60,255,0.18);
+    }
+    .wheel-center {
+      position: absolute; width: 58px; height: 58px;
+      background: radial-gradient(circle, #3a00a0, #0f0020);
+      border-radius: 50%;
+      border: 3px solid rgba(212,128,255,0.6);
+      box-shadow: 0 0 24px rgba(212,128,255,0.7), inset 0 0 16px rgba(176,77,255,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5em; z-index: 5; pointer-events: none;
+    }
+
+    /* BUTTON */
+    .spin-btn {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.72em; letter-spacing: 2px;
+      padding: 15px 44px; border-radius: 50px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      color: #fff; border: none; cursor: pointer;
+      box-shadow: 0 4px 30px rgba(160,60,255,0.6);
+      transition: all 0.3s ease; position: relative; overflow: hidden;
+    }
+    .spin-btn::after {
+      content:''; position:absolute; inset:0;
+      background:linear-gradient(135deg,rgba(255,255,255,0.12),transparent);
+      opacity:0; transition:opacity 0.3s;
+    }
+    .spin-btn:hover:not(:disabled) { transform:translateY(-4px); box-shadow:0 10px 44px rgba(160,60,255,0.8); }
+    .spin-btn:hover:not(:disabled)::after { opacity:1; }
+    .spin-btn:disabled { opacity:0.45; cursor:not-allowed; transform:none; }
+    .spin-hint {
+      font-size:0.72em; color:rgba(147,112,187,0.5);
+      letter-spacing:1.5px; text-transform:uppercase; text-align:center;
+    }
+
+    /* RESULT OVERLAY */
+    .result-overlay {
+      position: fixed; inset: 0;
+      background: rgba(4,0,10,0.9);
+      backdrop-filter: blur(16px);
+      z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+    .result-overlay.show { opacity:1; pointer-events:all; }
+
+    .result-modal {
+      position: relative;
+      width: 100%; max-width: 600px;
+      background: linear-gradient(148deg, #16002e 0%, #280055 50%, #0b001c 100%);
+      border: 1px solid rgba(176,77,255,0.35);
+      border-radius: 26px;
+      padding: 44px 38px 38px;
+      display: flex; flex-direction: column; align-items: center; gap: 18px;
+      text-align: center;
+      box-shadow: 0 0 80px rgba(160,60,255,0.28), 0 0 0 1px rgba(255,255,255,0.04);
+      transform: scale(0.88) translateY(30px);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+      max-height: 90vh; overflow-y: auto;
+    }
+    .result-overlay.show .result-modal { transform:scale(1) translateY(0); }
+    .result-modal::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:170px;
+      background:radial-gradient(ellipse at 50% 0%, rgba(176,77,255,0.2), transparent 70%);
+      border-radius:26px 26px 0 0; pointer-events:none;
+    }
+
+    .close-btn {
+      position:absolute; top:14px; right:16px;
+      background:rgba(176,77,255,0.1);
+      border:1px solid rgba(176,77,255,0.22);
+      color:var(--muted); font-size:1em;
+      width:34px; height:34px; border-radius:50%;
+      cursor:pointer; display:flex; align-items:center; justify-content:center;
+      transition:all 0.2s; z-index:1;
+    }
+    .close-btn:hover { background:rgba(176,77,255,0.28); color:#fff; }
+
+    /* MUSIC BUTTON */
+    .music-btn {
+      position: fixed;
+      top: 80px; right: 13px;
+      z-index: 999;
+      background: rgba(10,0,20,0.84);
+      border: 1px solid rgba(176,77,255,0.2);
+      border-radius: 50%;
+      width: 42px; height: 42px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.1em;
+      color: #d0b0ee;
+    }
+    .music-btn:hover {
+      background: rgba(176,77,255,0.28);
+      border-color: var(--accent);
+      transform: scale(1.12) translateX(-3px);
+      box-shadow: 0 0 12px var(--glow);
+    }
+    @keyframes musicPulse { 0%,100%{box-shadow:0 0 6px var(--glow);} 50%{box-shadow:0 0 22px rgba(176,77,255,0.8);} }
+    .music-btn.playing { animation: musicPulse 1.8s ease infinite; }
+
+    .result-img-wrap {
+      width:128px; height:128px; border-radius:50%;
+      overflow:hidden;
+      border:3px solid rgba(176,77,255,0.5);
+      box-shadow:0 0 32px rgba(176,77,255,0.5),0 0 64px rgba(176,77,255,0.2);
+      background:rgba(176,77,255,0.08); flex-shrink:0;
+      animation:popIn 0.5s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .result-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+    .result-img-wrap .ph {
+      width:100%; height:100%;
+      display:flex; align-items:center; justify-content:center; font-size:3em;
+    }
+    @keyframes popIn {
+      from{transform:scale(0) rotate(-15deg);opacity:0;}
+      to{transform:scale(1) rotate(0);opacity:1;}
+    }
+
+    .result-label {
+      font-size:0.7em; letter-spacing:2px; text-transform:uppercase;
+      color:var(--accent3); font-weight:600;
+    }
+    .result-name {
+      font-family:'Press Start 2P', monospace;
+      font-size:clamp(1em,3.5vw,1.5em);
+      color:#fff; letter-spacing:2px;
+      text-shadow:0 0 24px var(--glow);
+    }
+    .result-role {
+      font-size:0.78em; color:var(--accent3);
+      letter-spacing:1.5px; font-weight:600; text-transform:uppercase;
+      padding:0 10px; line-height:1.5;
+    }
+    .result-divider {
+      width:60px; height:1px;
+      background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    }
+    .result-tags {
+      display:flex; flex-wrap:wrap; gap:8px; justify-content:center;
+    }
+    .tag {
+      background:rgba(176,77,255,0.1);
+      border:1px solid rgba(176,77,255,0.22);
+      border-radius:20px; padding:4px 14px;
+      font-size:0.72em; color:var(--muted); letter-spacing:1px;
+    }
+    .tag.hi {
+      background:rgba(176,77,255,0.18);
+      border-color:rgba(176,77,255,0.45); color:var(--accent3);
+    }
+    .result-lore {
+      font-size:0.86em; line-height:1.85;
+      color:#d0b0ee; font-weight:300;
+      text-align:left; max-height:200px; overflow-y:auto;
+      scrollbar-width:thin; scrollbar-color:rgba(176,77,255,0.3) transparent;
+      padding:0 4px;
+    }
+    .result-lore::-webkit-scrollbar{width:4px;}
+    .result-lore::-webkit-scrollbar-thumb{background:rgba(176,77,255,0.3);border-radius:4px;}
+
+    .again-btn {
+      font-family:'Raleway',sans-serif; font-weight:700;
+      font-size:0.82em; letter-spacing:1.5px; text-transform:uppercase;
+      padding:11px 30px; border-radius:50px;
+      background:transparent; color:var(--accent);
+      border:1px solid rgba(176,77,255,0.5);
+      cursor:pointer; transition:all 0.3s; margin-top:4px;
+    }
+    .again-btn:hover { background:rgba(176,77,255,0.1); transform:translateY(-2px); }
+
+    /* sparks */
+    .spark {
+      position:fixed; width:6px; height:6px;
+      border-radius:50%; background:var(--accent3);
+      pointer-events:none; z-index:3000;
+      animation:sparkOut 0.9s ease-out forwards;
+    }
+    @keyframes sparkOut { to{transform:var(--st);opacity:0;scale:0;} }
+
+    /* footer */
+    footer {
+      text-align:center; padding:30px 20px;
+      color:rgba(147,112,187,0.35);
+      font-size:0.72em; letter-spacing:2px; text-transform:uppercase;
+      border-top:1px solid rgba(176,77,255,0.07);
+      width:100%; position:relative; z-index:1; margin-top:auto;
+    }
+
+    @keyframes fadeDown {
+      from{opacity:0;transform:translateY(-20px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+    @keyframes rotateSlow {
+      from{transform:rotate(0deg);} to{transform:rotate(360deg);}
+    }
+    .spinning canvas#wheel { animation:glowPulse 0.35s ease infinite; }
+    @keyframes glowPulse {
+      0%,100%{box-shadow:0 0 0 3px rgba(176,77,255,0.25),0 0 70px rgba(160,60,255,0.55);}
+      50%{box-shadow:0 0 0 5px rgba(212,128,255,0.6),0 0 110px rgba(212,128,255,0.75);}
+    }
+
+    @media(max-width:520px){
+      .ring-1{width:330px;height:330px;}
+      .ring-2{width:374px;height:374px;}
+      .result-modal{padding:36px 18px 28px;}
+      .result-name{font-size:clamp(0.85em,4vw,1.2em);}
+    }
+  </style>
+</head>
+<body>
+<canvas id="starfield"></canvas>
+
+<button class="music-btn" id="music-btn" title="Музыка">🔊</button>
+
+<header>
+  <a href="index.html" class="logo-text">SquareFox</a>
+  <a href="index.html">← Главная</a>
+  <a href="index.html#cards">Персонажи</a>
+  <a href="index.html#about">О проекте</a>
+  <a href="index.html#faq">FAQ</a>
+  <a href="roulette.html" class="special active">🎰 Рулетка</a>
+</header>
+
+<div class="page-wrap">
+  <div class="hero">
+    <div class="hero-badge"><div class="badge-dot"></div>Испытай судьбу межпространства</div>
+    <h1 class="hero-title">Кто ты из<br>персонажей SF?</h1>
+    <p class="hero-sub">Колесо судьбы (Казино SF)</p>
+    <div class="hero-divider"></div>
+  </div>
+
+  <div class="wheel-area">
+    <div class="wheel-row">
+      <div id="oleg-wrap">
+        <img id="oleg-img" src="Олег1.png" alt="Олег">
+      </div>
+      <div class="wheel-wrap" id="wheel-wrap">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="wheel-pointer"></div>
+        <canvas id="wheel" width="380" height="380"></canvas>
+        <div class="wheel-center">SF</div>
+      </div>
+    </div>
+    <button class="spin-btn" id="spin-btn" onclick="spinWheel()">🎰 Крутить</button>
+    <p class="spin-hint">Администрация Проекта — Мошенники</p>
+  </div>
+
+  <footer>© SquareFox — Творческое объединение</footer>
+</div>
+
+<!-- RESULT -->
+<div class="result-overlay" id="result-overlay">
+  <div class="result-modal">
+    <button class="close-btn" onclick="closeResult()">✕</button>
+    <div class="result-img-wrap" id="result-img-wrap"></div>
+    <div class="result-label">Ты — это...</div>
+    <div class="result-name" id="result-name"></div>
+    <div class="result-role" id="result-role"></div>
+    <div class="result-tags" id="result-tags"></div>
+    <div class="result-divider"></div>
+    <p class="result-lore" id="result-lore"></p>
+    <button class="again-btn" onclick="onAgainClick()">🎰 Крутить ещё раз</button>
+  </div>
+</div>
+
+
+<script>
+// ─── AUDIO ───
+const bgMusic     = new Audio('Музыка.mp3');
+bgMusic.loop      = true;
+bgMusic.volume    = 0.45;
+
+const rouletteSnd = new Audio('Рулетка.mp3');
+rouletteSnd.volume = 0.8;
+
+const happySnd    = new Audio('happy.mp3');
+happySnd.volume   = 0.85;
+
+// Music button
+const musicBtn = document.getElementById('music-btn');
+let musicPlaying = false;
+let autoplayListenerActive = false;
+
+function setMusicUI(on) {
+  musicPlaying = on;
+  musicBtn.textContent = on ? '🔊' : '🔇';
+  musicBtn.classList.toggle('playing', on);
+}
+
+function startMusic() {
+  bgMusic.play().then(() => {
+    setMusicUI(true);
+    if (autoplayListenerActive) {
+      document.removeEventListener('click', onFirstInteraction);
+      document.removeEventListener('keydown', onFirstInteraction);
+      autoplayListenerActive = false;
+    }
+  }).catch(() => {});
+}
+
+function onFirstInteraction(e) {
+  // Don't trigger autoplay if user clicked the music button itself
+  if (e.target === musicBtn) return;
+  startMusic();
+}
+
+// Try immediate autoplay
+bgMusic.play().then(() => {
+  setMusicUI(true);
+}).catch(() => {
+  // Autoplay blocked — wait for first interaction (not on music btn)
+  setMusicUI(false);
+  autoplayListenerActive = true;
+  document.addEventListener('click', onFirstInteraction);
+  document.addEventListener('keydown', onFirstInteraction);
+});
+
+// Toggle button
+musicBtn.addEventListener('click', () => {
+  if (musicPlaying) {
+    bgMusic.pause();
+    setMusicUI(false);
+  } else {
+    bgMusic.play().then(() => setMusicUI(true)).catch(() => {});
+  }
+});
+
+const characters = [
+  {
+    name:"Нэрз",img:"Нэрз.png",emoji:"",
+    role:"Первый президент SquareFox 1",
+    age:"34 года",traits:["Нервный","Трусливый","Основатель государства"],
+    glow:"#4499ff",
+    lore:"Первый и последний президент, основавший государство с нуля. Был убит в подвале собственного ресторана «Los Penis Hermanos» своей версией из другой вселенной — Джокерзом. Воскрешён, но с тяжёлыми последствиями."
+  },
+  {
+    name:"Нэрз",img:"НэрзС.png",emoji:"",
+    role:"Отрешённый президент SF 1",
+    age:"34 года",traits:["Двойное сознание","Под контролем","Сломлен"],
+    glow:"#cc44cc",
+    lore:"После воскрешения в сознании оказалось две личности Нэрза, убитых Джокерзом. Одна из них взяла контроль над разумом. В конце первого сезона захвачен «Всадниками апокалипсиса»."
+  },
+  {
+    name:"Джокерз",img:"Джокерз.png",emoji:"",
+    role:"Межвселенский преступник",
+    age:"~20 лет",traits:["Маниакальный","Психически нестаб.","Организатор"],
+    glow:"#ff3333",
+    lore:"Организатор группировки «Всадники апокалипсиса». Самый опасный межвселенский преступник за всё время. Осуждён за уничтожение тысяч вселенных и убийство своих версий. Сотрудничает с Джой Гаем."
+  },
+  {
+    name:"Олег",img:"Олег.png",emoji:"",
+    role:"Пожиратель миров",
+    age:"Сотни лет",traits:["Мутирующий","Бессмертный","Всадник"],
+    glow:"#888800",
+    lore:"Существует не одну сотню лет. Принимает любую живую форму с дефектами. Принял облик похожий на Нэрза — сначала для маскировки, но затем привык к этой оболочке. Способен мутировать при поглощении вселенных."
+  },
+  {
+    name:"Нэрзол Грин",img:"Нэрзол.png",emoji:"",
+    role:"Механик и учёный SF 2",
+    age:"28 лет",traits:["Грубый","Эгоистичный","Гений инженерии"],
+    glow:"#44cc44",
+    lore:"Выжил после апокалипсиса, но чем дольше существовал в новом мире — тем быстрее старел. Умер от старости. Перед смертью оцифровал своё сознание и отправил его в базу данных ТГ-01."
+  },
+  {
+    name:"МГ-02",img:"МГ-02.png",emoji:"",
+    role:"Медный Голем · «Медный Еблан»",
+    age:"Десятки лет",traits:["Собственное сознание","Окислённый","Скиталец"],
+    glow:"#cc8800",
+    lore:"Создан Кристофером Грином. Из-за сбоя при передаче сознания обрёл собственную личность. Десятки лет скитался по пустому миру, пока не отключился в заброшенном Медь-Сити. Был найден и включён новыми жителями."
+  },
+  {
+    name:"ТГ-01 «ТИТАН»",img:"Титан.png",emoji:"",
+    role:"Титановый Голем серии 1",
+    age:"Создан Нэрзолом",traits:["Ядерный реактор","Разобран","Усовершенствованный"],
+    glow:"#4477cc",
+    lore:"Усовершенствованная версия МГ-02. После захода в ядерный реактор (портал в Энд) вышел из строя с множеством повреждений от холодного оружия. Разобран на детали — они послужили бронёй для Дамирона."
+  },
+  {
+    name:"Макс Хеллер",img:"Макс.png",emoji:"",
+    role:"Заместитель президента SF 1",
+    age:"~120 лет",traits:["Высокомерен","Бывший Хранитель","Потерял веру"],
+    glow:"#cccc44",
+    lore:"Один из работников Департамента Межпространственного Управления (Хранителей, Ангелов). После нескольких ошибок и двукратного лицезрения конца мира пытается напрямую обратиться к Господу. Не получая ответа — теряет веру в себя."
+  },
+  {
+    name:"Джек Томпсон",img:"Джек.png",emoji:"",
+    role:"Археолог · Глава экспедиции",
+    age:"31 год",traits:["Бунтарь","Злопамятный","Сломленный"],
+    glow:"#cc6600",
+    lore:"Активно изучал мир SF 2. После открытия зельеварения начались нервные срывы. Конфликты с государством окончательно увели в запой. Уничтожил часть исследований. К концу SF 2 — полностью сломленный, с алкогольной зависимостью от зелий."
+  },
+  {
+    name:"Печенька",img:"Печенька.png",emoji:"",
+    role:"Беглая авантюристка SF 1",
+    age:"16 лет",traits:["Двуличная","Садистка","В розыске"],
+    glow:"#cc0055",
+    lore:"Преступник на SF 1. Была нацелена на буквальный подрыв власти. Использовала ФБР Дамирона как прикрытие, рыла тайные тоннели. Объявлена в розыск. В момент разрушения мира предположительно погибла."
+  },
+  {
+    name:"Печенька",img:"Печенька2.png",emoji:"",
+    role:"Заместитель президента SF 2",
+    age:"19 лет",traits:["Решительная","Строгая","Хитрая"],
+    glow:"#cc0099",
+    lore:"В начале SF 2 организовала захват власти совместно с romapopa. Установила жёсткие порядки — объявила охоту за Джеком Томпсоном. В мэрии был найден тайный проход с награбленным у граждан. Бесследно пропала."
+  },
+  {
+    name:"Дез",img:"Дезгай.png",emoji:"",
+    role:"Покоритель морей · Бывший пират",
+    age:"39 лет",traits:["Суровый","Доброжелательный","Проклятое бессмертие"],
+    glow:"#0066cc",
+    lore:"Обладает бессмертием, которое сам называет «проклятием». Скрывает левый глаз за повязкой. Был убит версией из другой вселенной — Джой Гаем. Воскрес, прыгнув в портал. Теперь странствует по вселенным."
+  },
+  {
+    name:"Джой Гай",img:"Джой.png",emoji:"",
+    role:"Межвселенский преступник",
+    age:"24 года",traits:["Нестабильный","Озорной","Охотник за клонами"],
+    glow:"#ff2200",
+    lore:"Охотится за своими версиями из других вселенных — убивая их, становится сильнее. Сходит с ума при виде красного и крови. Обожает всё золотое. Сотрудничает с Джокерзом."
+  }
+];
+
+const N = characters.length;
+const arc = (2*Math.PI)/N;
+let angle = 0, spinning = false;
+let spinCount = 0;
+
+const canvas = document.getElementById('wheel');
+const ctx = canvas.getContext('2d');
+
+const bgs = [
+  ['#180034','#2a0060'],['#0e001e','#1c003c'],['#1c0030','#300058'],
+  ['#100020','#1e003e'],['#160028','#260050'],['#120022','#200044'],
+  ['#1a002e','#2e005a'],['#0c001a','#180034'],['#180030','#2c0054'],
+  ['#0f0020','#1c003a'],['#1c002c','#300050'],['#0d001e','#1a0038'],
+  ['#1a0034','#2e005c'],['#10001e','#1e003c'],['#16002a','#260050'],
+];
+
+function drawWheel(a) {
+  const cx = canvas.width/2, cy = canvas.height/2, R = cx-5;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  for (let i=0;i<N;i++) {
+    const sa = a+i*arc, ea = sa+arc;
+    const ch = characters[i];
+    const g = ctx.createRadialGradient(cx,cy,14,cx,cy,R);
+    g.addColorStop(0,bgs[i][0]); g.addColorStop(1,bgs[i][1]);
+    ctx.beginPath(); ctx.moveTo(cx,cy);
+    ctx.arc(cx,cy,R,sa,ea); ctx.closePath();
+    ctx.fillStyle=g; ctx.fill();
+    ctx.strokeStyle='rgba(176,77,255,0.26)'; ctx.lineWidth=1.2; ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(cx,cy,R-8,sa+0.05,ea-0.05);
+    ctx.strokeStyle=ch.glow+'77'; ctx.lineWidth=2.5; ctx.stroke();
+    ctx.save();
+    ctx.translate(cx,cy); ctx.rotate(sa+arc/2); ctx.textAlign='right';
+    ctx.font=`${R*0.1}px serif`; ctx.fillText(ch.emoji,R-13,5);
+    const fs = Math.min(R*0.068,12);
+    ctx.font=`700 ${fs}px Raleway,sans-serif`;
+    ctx.fillStyle='#fff'; ctx.shadowColor=ch.glow; ctx.shadowBlur=7;
+    ctx.fillText(ch.name,R-34,5); ctx.shadowBlur=0;
+    ctx.restore();
+  }
+  const cg = ctx.createRadialGradient(cx,cy,0,cx,cy,30);
+  cg.addColorStop(0,'#4800b0'); cg.addColorStop(1,'#0f0020');
+  ctx.beginPath(); ctx.arc(cx,cy,30,0,2*Math.PI);
+  ctx.fillStyle=cg; ctx.fill();
+  ctx.strokeStyle='rgba(212,128,255,0.65)'; ctx.lineWidth=2.5; ctx.stroke();
+}
+
+drawWheel(angle);
+
+function getWinner(a) {
+  const n = (((-a-Math.PI/2)%(2*Math.PI))+(2*Math.PI))%(2*Math.PI);
+  return characters[Math.floor(n/arc)%N];
+}
+function easeOut(t) { return 1-Math.pow(1-t,4); }
+
+function spinWheel() {
+  if (spinning) return;
+  spinning = true;
+  document.getElementById('spin-btn').disabled = true;
+  document.getElementById('wheel-wrap').classList.add('spinning');
+
+  // Play roulette sound
+  rouletteSnd.currentTime = 0;
+  rouletteSnd.play().catch(() => {});
+
+  // Олег опускает руки (кадры 1→5) за первые ~400ms
+  animateOleg('forward', 400);
+  const spins=(6+Math.random()*6)*2*Math.PI;
+  const extra=Math.random()*2*Math.PI;
+  const target=angle-spins-extra;
+  const dur=4800+Math.random()*1600;
+  const start=angle, t0=performance.now();
+  function tick(now) {
+    const t=Math.min((now-t0)/dur,1);
+    const cur=start+(target-start)*easeOut(t);
+    drawWheel(cur);
+    if (t<1){requestAnimationFrame(tick);return;}
+    angle=target; drawWheel(angle);
+    spinning=false;
+    document.getElementById('spin-btn').disabled=false;
+    document.getElementById('spin-btn').textContent='🎰 Крутить ещё раз';
+    document.getElementById('wheel-wrap').classList.remove('spinning');
+
+    // Stop roulette sound when done
+    rouletteSnd.pause();
+    rouletteSnd.currentTime = 0;
+
+    // Олег возвращается в исходный кадр с задержкой
+    setTimeout(() => { olegImg.src = olegFrames[0]; }, 800);
+
+    spinCount++;
+    if (spinCount >= 9) {
+      // На следующем нажатии (10-й спин) — открываем ссылку прямо в обработчике клика
+      document.getElementById('spin-btn').dataset.psycho = '1';
+    }
+
+    showResult(getWinner(angle));
+  }
+  requestAnimationFrame(tick);
+}
+
+function showResult(ch) {
+  // Reset overlay so animation re-triggers on repeat spins
+  const ov = document.getElementById('result-overlay');
+  ov.classList.remove('show');
+  void ov.offsetWidth; // force reflow
+
+  document.getElementById('result-name').textContent = ch.name;
+  document.getElementById('result-role').textContent = ch.role;
+  document.getElementById('result-lore').textContent = ch.lore;
+
+  const tags = document.getElementById('result-tags');
+  tags.innerHTML = `<span class="tag hi">${ch.age}</span>`+
+    ch.traits.map(t=>`<span class="tag">${t}</span>`).join('');
+
+  const wrap = document.getElementById('result-img-wrap');
+  // Show emoji placeholder while image loads
+  wrap.innerHTML = `<div class="ph">${ch.emoji}</div>`;
+  const img = new Image();
+  img.src = ch.img;
+  img.onload = () => {
+    wrap.innerHTML = '';
+    img.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+    wrap.appendChild(img);
+  };
+  wrap.style.boxShadow = `0 0 32px ${ch.glow}88,0 0 64px ${ch.glow}44`;
+
+  ov.classList.add('show');
+  document.body.style.overflow = 'hidden';
+
+  // Play happy sound
+  happySnd.currentTime = 0;
+  happySnd.play().catch(() => {});
+
+  // Sparks
+  const cx = window.innerWidth/2, cy = window.innerHeight/2;
+  for (let i = 0; i < 18; i++) {
+    const s = document.createElement('div');
+    s.className = 'spark';
+    const ang = (i/18)*360;
+    const d = 110+Math.random()*90;
+    const x = Math.cos(ang*Math.PI/180)*d, y = Math.sin(ang*Math.PI/180)*d;
+    s.style.cssText = `left:${cx}px;top:${cy}px;margin:-3px;--st:translate(${x}px,${y}px);animation-delay:${Math.random()*0.3}s;background:${ch.glow};`;
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1100);
+  }
+}
+
+function onAgainClick() {
+  if (document.getElementById('spin-btn').dataset.psycho === '1') {
+    window.open('https://prodoctorov.ru/chelyabinsk/psiholog/', '_blank');
+    delete document.getElementById('spin-btn').dataset.psycho;
+  }
+  closeResult();
+}
+
+function closeResult() {
+  document.getElementById('result-overlay').classList.remove('show');
+  document.body.style.overflow='';
+}
+document.getElementById('result-overlay').addEventListener('click',e=>{
+  if(e.target===document.getElementById('result-overlay')) closeResult();
+});
+
+// STARFIELD
+const sfC=document.getElementById('starfield');
+const sfX=sfC.getContext('2d');
+let stars=[],sw,sh;
+function initStars(){
+  sw=sfC.width=window.innerWidth; sh=sfC.height=window.innerHeight;
+  stars=Array.from({length:250},()=>({
+    x:Math.random()*sw,y:Math.random()*sh,
+    r:Math.random()*1.3+0.28,
+    dx:(Math.random()-0.5)*0.28,dy:(Math.random()-0.5)*0.28,
+    op:Math.random()*0.5+0.4
+  }));
+}
+function animStars(){
+  sfX.clearRect(0,0,sw,sh);
+  for(const s of stars){
+    sfX.beginPath(); sfX.arc(s.x,s.y,s.r,0,Math.PI*2);
+    sfX.fillStyle=`rgba(255,255,255,${s.op})`; sfX.fill();
+    s.x+=s.dx; s.y+=s.dy;
+    if(s.x<0||s.x>sw||s.y<0||s.y>sh){s.x=Math.random()*sw;s.y=Math.random()*sh;}
+  }
+  requestAnimationFrame(animStars);
+}
+function resizeWheel(){
+  const size=Math.min(380,window.innerWidth-56);
+  canvas.width=size; canvas.height=size; drawWheel(angle);
+  // Олег масштабируется пропорционально колесу
+  const olegWrap = document.getElementById('oleg-wrap');
+  if (olegWrap) olegWrap.style.width = Math.round(size * 2.4) + 'px';
+}
+window.addEventListener('resize',()=>{initStars();resizeWheel();});
+initStars(); animStars(); resizeWheel();
+
+// ─── ОЛЕГ ───
+const olegImg    = document.getElementById('oleg-img');
+const olegFrames = ['Олег1.png','Олег2.png','Олег3.png','Олег4.png','Олег5.png','Олег6.png'];
+let olegAnimating = false;
+
+// Preload all frames
+olegFrames.forEach(src => { const i = new Image(); i.src = src; });
+
+// Levitation — driven by performance.now() so it NEVER resets between frame changes
+function olegLevitate(ts) {
+  const y   = Math.sin(ts / 1500)       * 18
+            + Math.sin(ts / 700 + 1.1)  * 6;
+  const rot = Math.sin(ts / 2200)       * 2.5
+            + Math.sin(ts / 950 + 0.8)  * 0.8;
+  olegImg.style.transform = `translateY(${y}px) rotate(${rot}deg)`;
+  requestAnimationFrame(olegLevitate);
+}
+requestAnimationFrame(olegLevitate);
+
+// Animate frames forward (0→4) or backward (4→0)
+// totalDuration = how many ms the full sequence should take
+function animateOleg(direction, totalDuration) {
+  if (olegAnimating) return;
+  olegAnimating = true;
+
+  const step   = direction === 'forward' ? 1 : -1;
+  const endIdx = direction === 'forward' ? olegFrames.length - 1 : 0;
+  const steps  = olegFrames.length - 1; // 4 transitions
+  const delay  = totalDuration / steps;
+
+  // Figure out current frame index
+  let frame = olegFrames.indexOf(olegImg.src.split('/').pop());
+  if (frame === -1) frame = direction === 'forward' ? 0 : olegFrames.length - 1;
+
+  function next() {
+    frame += step;
+    olegImg.src = olegFrames[frame];
+    if (frame === endIdx) { olegAnimating = false; return; }
+    setTimeout(next, delay);
+  }
+  setTimeout(next, delay);
+}
+</script>
+</body>
+</html>
